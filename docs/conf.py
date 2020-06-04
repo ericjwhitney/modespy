@@ -13,7 +13,6 @@
 import os
 import sys
 sys.path.insert(0, os.path.abspath('..'))  # Designed to be run from docs/
-sys.path.insert(0, os.path.abspath('..'))  # Designed to be run from docs/
 
 # -- Project information -----------------------------------------------------
 
