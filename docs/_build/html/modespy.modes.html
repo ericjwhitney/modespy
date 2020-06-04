@@ -1,0 +1,862 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>MODES Module &#8212; modespy 0.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Filters Module" href="modespy.filters.html" />
+    <link rel="prev" title="Welcome to MODESpy" href="index.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modespy.filters.html" title="Filters Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MODESpy"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="modes-module">
+<span id="modespy-modes"></span><h1>MODES Module<a class="headerlink" href="#modes-module" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#modespy.modes.SolverInstance" title="modespy.modes.SolverInstance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modespy.modes.SolverInstance</span></code></a></p></td>
+<td><p>Container class used to hold all runtime data for a single instance of a specific ODE solver type operating on a single order.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#modespy.modes.AnalyticDenseOutput" title="modespy.modes.AnalyticDenseOutput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modespy.modes.AnalyticDenseOutput</span></code></a></p></td>
+<td><p>AnalyticDenseOutput provides a DenseOutput representation of the user-supplied analytic function.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#modespy.modes.MODESDenseOutput" title="modespy.modes.MODESDenseOutput"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modespy.modes.MODESDenseOutput</span></code></a></p></td>
+<td><p>MODESDenseOutput provides interpolation for intermediate values between MODES timesteps.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#modespy.modes.MODES" title="modespy.modes.MODES"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modespy.modes.MODES</span></code></a></p></td>
+<td><p>This class implements the generic multi-step, multi-order ODE solver.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="module-modespy.modes">
+<span id="members"></span><h2>Members<a class="headerlink" href="#module-modespy.modes" title="Permalink to this headline">¶</a></h2>
+<p>This module implements the <cite>MODES</cite> class which is drop-in compatible with
+SciPy function <code class="docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp()</span></code>.  This is the main mechanism by
+which the parameterised multi-step solver is called.  See examples below
+demonstrating the calling methods.</p>
+<p><strong>Differences to MATLAB Implementation</strong></p>
+<ul class="simple">
+<li><p><strong>(Version 0.9.0)</strong> Dense output added by Eric J. Whitney.</p></li>
+<li><p><strong>(Version 0.9.0)</strong> Fallback implicit solver added by Eric J. Whitney.</p></li>
+<li><p><strong>(Version 0.9.0)</strong> The requirement for counting a certain number of
+previous steps (<code class="docutils literal notranslate"><span class="pre">orderControlStarts</span></code>) before allowing order control has
+been removed from the main loop.  The purpose of this was to ensure that a
+higher order would have enough previous steps to be able to compute a new
+point.  In this implementation this requirement is met by design and is
+therefore checked on the fly.</p></li>
+<li><p><strong>(Version 0.9.0)</strong> There is a subtle change in the how the polynomial
+values are unpacked for Implicit + 1 methods when <em>k</em> = 1.  Refer to
+<code class="docutils literal notranslate"><span class="pre">_coeffs_implicit_plus()</span></code> for details.</p></li>
+<li><p><strong>(Version 0.9.0)</strong> The code implementating the original MATLAB method of
+setting up the predictor polynomial is quarantined, as it appears to be
+already covered by other code.  Refer to <code class="docutils literal notranslate"><span class="pre">predict()</span></code> for details.</p></li>
+</ul>
+<p class="rubric">Examples</p>
+<p>As a simple first example we solve the Lotka-Volterra problem and plot the
+solution.  This is a non-stiff problem originating from biology.  We will
+use the Adams-Bashforth method which does not required the Jacobian.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">solve_ivp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modespy</span> <span class="kn">import</span> <span class="n">MODES</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modespy.std_problems</span> <span class="kn">import</span> <span class="n">lotka_rhs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">fun</span><span class="o">=</span><span class="n">lotka_rhs</span><span class="p">,</span> <span class="n">t_span</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">y0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="n">MODES</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="n">modes_method</span><span class="o">=</span><span class="s1">&#39;Adams-Bashforth&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,:],</span> <span class="s1">&#39;-or&#39;</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">,:],</span> <span class="s1">&#39;-ob&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$y_0$, $y_1$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;LOTKA-VOLTERRA&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>This next example shows how the solution can be started with a known
+analytic solution, which can then also be used to compute real errors. For
+interest we will also plot the dynamic solver order used during the solution.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">sqrt</span><span class="p">,</span> <span class="n">cos</span><span class="p">,</span> <span class="n">sin</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w_n</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">0.15</span>  <span class="c1"># Underdamped.</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x_0</span><span class="p">,</span> <span class="n">u_0</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">w_d</span> <span class="o">=</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">z</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pendulum_eqns</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># Free pendulum split into two 1st order ODEs.</span>
+<span class="gp">... </span>    <span class="n">x_dot</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span> <span class="o">*</span> <span class="n">z</span> <span class="o">*</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">w_n</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">x_dot</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">pendulum_solution</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>  <span class="c1"># Analytic solution.</span>
+<span class="gp">... </span>    <span class="n">x</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">z</span> <span class="o">*</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+<span class="gp">... </span>            <span class="n">x_0</span> <span class="o">*</span> <span class="n">cos</span><span class="p">(</span><span class="n">w_d</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="n">u_0</span> <span class="o">+</span> <span class="n">z</span> <span class="o">*</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">x_0</span><span class="p">)</span> <span class="o">/</span> <span class="n">w_d</span> <span class="o">*</span> <span class="n">sin</span><span class="p">(</span><span class="n">w_d</span> <span class="o">*</span>
+<span class="gp">... </span>                                                                   <span class="n">t</span><span class="p">))</span>
+<span class="gp">... </span>    <span class="n">x_dot</span> <span class="o">=</span> <span class="p">(</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span> <span class="o">*</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">*</span>
+<span class="gp">... </span>             <span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">w_d</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">u_0</span> <span class="o">+</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">x_0</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">-</span> <span class="n">w_d</span> <span class="o">*</span> <span class="n">x_0</span> <span class="o">*</span>
+<span class="gp">... </span>              <span class="n">sin</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">w_d</span><span class="p">))</span> <span class="o">-</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">z</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span> <span class="o">*</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">*</span>
+<span class="gp">... </span>              <span class="p">(</span><span class="n">sin</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">w_d</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">u_0</span> <span class="o">+</span> <span class="n">w_n</span> <span class="o">*</span> <span class="n">x_0</span> <span class="o">*</span> <span class="n">z</span><span class="p">)</span> <span class="o">/</span> <span class="n">w_d</span> <span class="o">+</span> <span class="n">x_0</span> <span class="o">*</span>
+<span class="gp">... </span>               <span class="n">cos</span><span class="p">(</span><span class="n">t</span> <span class="o">*</span> <span class="n">w_d</span><span class="p">)))</span>
+<span class="gp">... </span>    <span class="k">return</span> <span class="n">x</span><span class="p">,</span> <span class="n">x_dot</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">modes_stats</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">fun</span><span class="o">=</span><span class="n">pendulum_eqns</span><span class="p">,</span> <span class="n">t_span</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">],</span> <span class="n">y0</span><span class="o">=</span><span class="p">[</span><span class="n">x_0</span><span class="p">,</span> <span class="n">u_0</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="n">method</span><span class="o">=</span><span class="n">MODES</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="n">modes_stats</span><span class="o">=</span><span class="n">modes_stats</span><span class="p">,</span>  <span class="c1"># Gather statistics.</span>
+<span class="gp">... </span>                <span class="n">modes_p</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">7</span><span class="p">),</span>  <span class="c1"># Force higher order for analytic startup.</span>
+<span class="gp">... </span>                <span class="n">modes_config</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;analytic_fn&#39;</span><span class="p">:</span> <span class="n">pendulum_solution</span><span class="p">,</span>
+<span class="gp">... </span>                              <span class="s1">&#39;analytic_start&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>  <span class="c1"># Known statup pts.</span>
+<span class="gp">... </span>                              <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">})</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">x_analytic</span> <span class="o">=</span> <span class="p">[</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;y_analytic&#39;</span><span class="p">]]</span>  <span class="c1"># Extract just `x`.</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="s1">&#39;-ob&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+<span class="gp">... </span>         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;COMPUTED&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span> <span class="n">x_analytic</span><span class="p">,</span> <span class="s1">&#39;--sr&#39;</span><span class="p">,</span> <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">,</span>
+<span class="gp">... </span>         <span class="n">label</span><span class="o">=</span><span class="s1">&#39;ANALYTIC&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper right&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;PENDULUM&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span> <span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;err_norm_analytic&#39;</span><span class="p">],</span> <span class="s1">&#39;-ob&#39;</span><span class="p">,</span>
+<span class="gp">... </span>         <span class="n">markerfacecolor</span><span class="o">=</span><span class="s1">&#39;none&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ticklabel_format</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s1">&#39;sci&#39;</span><span class="p">,</span> <span class="n">scilimits</span><span class="o">=</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$||y - y_</span><span class="si">{EXACT}</span><span class="s1">||$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ERROR 2-NORM&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span> <span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">],</span> <span class="s1">&#39;k.-&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$p$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;SOLVER ORDER&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>As a final more complex example we solve the <strong>H</strong>igh <strong>I</strong>rradiance
+<strong>RES</strong>ponse which is a stiff problem originating from plant physiology.
+A number of the <em>tunable</em> parameters are adjusted to show how this can be done.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">modespy.std_problems</span> <span class="kn">import</span> <span class="n">hires_jac</span><span class="p">,</span> <span class="n">hires_rhs</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">modes_stats</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sol</span> <span class="o">=</span> <span class="n">solve_ivp</span><span class="p">(</span><span class="n">fun</span><span class="o">=</span><span class="n">hires_rhs</span><span class="p">,</span> 
+<span class="gp">... </span>                <span class="n">t_span</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mf">321.8122</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="n">y0</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.0057</span><span class="p">],</span>
+<span class="gp">... </span>                <span class="n">t_eval</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">321.8122</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span>  <span class="c1"># Dense `t` vals.</span>
+<span class="gp">... </span>                <span class="n">tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span>  <span class="c1"># Nominated tolerance.</span>
+<span class="gp">... </span>                <span class="n">method</span><span class="o">=</span><span class="n">MODES</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="n">jac</span><span class="o">=</span><span class="n">hires_jac</span><span class="p">,</span>  <span class="c1"># Jacobian function supplied.</span>
+<span class="gp">... </span>                <span class="n">modes_method</span><span class="o">=</span><span class="s1">&#39;dcBDF&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                <span class="n">modes_p</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>  <span class="c1"># Specified order `p` range.</span>
+<span class="gp">... </span>                <span class="n">modes_start_idx</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>  <span class="c1"># Starting solver (p = 4 in this case).</span>
+<span class="gp">... </span>                <span class="n">modes_filter</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;H312b&#39;</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>  <span class="c1"># Non-default filter `b`.</span>
+<span class="gp">... </span>                <span class="n">modes_stats</span><span class="o">=</span><span class="n">modes_stats</span><span class="p">,</span>  <span class="c1"># Gather stats on errors, `p`, etc.</span>
+<span class="gp">... </span>                <span class="n">modes_config</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;impl_solver&#39;</span><span class="p">:</span> <span class="s1">&#39;hybr&#39;</span><span class="p">,</span>
+<span class="gp">... </span>                              <span class="s1">&#39;impl_backup&#39;</span><span class="p">:</span> <span class="kc">None</span><span class="p">,</span>
+<span class="gp">... </span>                              <span class="s1">&#39;impl_its&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span>
+<span class="gp">... </span>                              <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
+<span class="gp">... </span>                <span class="p">)</span>
+<span class="go">MODES Solution -&gt; p = [2, 3, 4, 5, 6], Method = dcBDF, Filter = (&#39;H312b&#39;, 10)</span>
+<span class="gp">... </span><span class="mi">18</span> <span class="n">RHS</span> <span class="n">evaluations</span> <span class="n">used</span> <span class="n">during</span> <span class="n">startup</span><span class="o">.</span>
+<span class="gp">...</span>
+<span class="gp">... </span><span class="mi">1207</span> <span class="n">RHS</span> <span class="n">Evaluations</span><span class="p">:</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">2.4585</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mf">0.010501</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">(</span><span class="mi">34</span> <span class="n">Rejected</span> <span class="n">Steps</span><span class="p">)</span>
+<span class="gp">... </span><span class="mi">1575</span> <span class="n">RHS</span> <span class="n">Evaluations</span><span class="p">:</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">3.2594</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mf">0.16758</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">34</span> <span class="n">Rejected</span> <span class="n">Steps</span><span class="p">)</span>
+<span class="gp">... </span><span class="mi">2561</span> <span class="n">RHS</span> <span class="n">Evaluations</span><span class="p">:</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">117.98</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mf">2.904</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">34</span> <span class="n">Rejected</span> <span class="n">Steps</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">y</span><span class="p">):</span>
+<span class="gp">... </span>    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">sol</span><span class="o">.</span><span class="n">t</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="s1">&#39;.-&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$y$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;HIRES&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Here we plot some statistics.  Note that when plotting statistics we use
+<code class="docutils literal notranslate"><span class="pre">modes_stats['t']</span></code> values (and not <code class="docutils literal notranslate"><span class="pre">sol.t</span></code>).  These values align with the
+data and represent actual computation which can be used to observe the
+variable solver steps. They may not align with the normal output <code class="docutils literal notranslate"><span class="pre">sol</span></code> data
+which may have a different length.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">h</span> <span class="o">=</span> <span class="p">[</span><span class="n">t2</span> <span class="o">-</span> <span class="n">t1</span> <span class="k">for</span> <span class="n">t1</span><span class="p">,</span> <span class="n">t2</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span> <span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">][</span><span class="mi">1</span><span class="p">:])]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">][:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">h</span><span class="p">,</span> <span class="s1">&#39;k.-&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$h$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;STEP SIZE VARIATION&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span> <span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;err_norm&#39;</span><span class="p">],</span> <span class="s1">&#39;k.-&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$||E||$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="o">&gt;&gt;&gt;</span> <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ERROR VARIATION&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">yscale</span><span class="p">(</span><span class="s1">&#39;log&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span> <span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">],</span> <span class="s1">&#39;k.-&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;$p$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;SOLVER ORDER&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">max</span><span class="p">(</span><span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;p&#39;</span><span class="p">])</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;t&#39;</span><span class="p">],</span> <span class="n">modes_stats</span><span class="p">[</span><span class="s1">&#39;rej_steps&#39;</span><span class="p">],</span> <span class="s1">&#39;k.-&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;$t$&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;REJECTED STEPS&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;ACCUMULATION OF REJECTED STEPS&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">margins</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="section" id="future">
+<h3>Future<a class="headerlink" href="#future" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Addition of a timer call within <code class="docutils literal notranslate"><span class="pre">_step_impl()</span></code> for each order and
+running averaging would allow work factors to be automatically computed.</p></li>
+</ul>
+<dl class="class">
+<dt id="modespy.modes.AnalyticDenseOutput">
+<em class="property">class </em><code class="sig-prename descclassname">modespy.modes.</code><code class="sig-name descname">AnalyticDenseOutput</code><span class="sig-paren">(</span><em class="sig-param">t_old: float, t: float, fun: Callable[[float], Union[float, Sequence[float], Type[numpy.ndarray]]]</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.AnalyticDenseOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.integrate._ivp.base.DenseOutput</span></code></p>
+<p>AnalyticDenseOutput provides a DenseOutput representation of the
+user-supplied analytic function.  This is used when interpolating dense
+points in the very early startup phase of the solution where an analytic
+solution is available.</p>
+<dl class="method">
+<dt id="modespy.modes.AnalyticDenseOutput.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">t_old: float, t: float, fun: Callable[[float], Union[float, Sequence[float], Type[numpy.ndarray]]]</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.AnalyticDenseOutput.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.AnalyticDenseOutput._call_impl">
+<code class="sig-name descname">_call_impl</code><span class="sig-paren">(</span><em class="sig-param">t: float</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.AnalyticDenseOutput._call_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="modespy.modes.MODES">
+<em class="property">class </em><code class="sig-prename descclassname">modespy.modes.</code><code class="sig-name descname">MODES</code><span class="sig-paren">(</span><em class="sig-param">fun: Callable[[float, Union[float, Sequence[float], Type[numpy.ndarray]], Optional[Any]], Union[float, Sequence[float], Type[numpy.ndarray]]], t0: float, y0: Union[float, Sequence[float], Type[numpy.ndarray]], t_bound: float, tol: float = 0.0001, jac: Union[Callable[[float, Union[float, Sequence[float], Type[numpy.ndarray]], Optional[Any]], Union[float, Sequence[float], Type[numpy.ndarray]]], numpy.ndarray, None] = None, vectorized=False, first_step: Union[float, str] = 'Deterministic', modes_p: Optional[Sequence[int]] = None, modes_method: Union[str, Sequence[str]] = 'Adams-Moulton', modes_filter: Union[str, Tuple[str, float], None, Sequence[Union[str, Tuple[str, float], None]]] = 'PI3333', modes_start_idx: Optional[int] = None, modes_config: Dict = None, modes_stats: dict = None, **extraneous</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.integrate._ivp.base.OdeSolver</span></code></p>
+<p>This class implements the generic multi-step, multi-order ODE solver.
+It is derived from SciPy OdeSolver class so that it can be called
+directly by scipy.integrate <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code>.</p>
+<p><strong>Implementation Details</strong></p>
+<ul class="simple">
+<li><p>The number of Jacobian LU-factorisations <code class="docutils literal notranslate"><span class="pre">self.nlu</span></code> are not tracked
+as is done for other ODE methods, because this depends on the choice of
+implicit solver which is variable.</p></li>
+<li><p>Dense output uses the same interpolating polynomial developed for
+each time step as the solution progresses (i.e. the order and timestep
+will vary). Therefore the precision of dense output is the same as the
+solver precision at each point in the solution.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Because <cite>solve_ivp()</cite> calls <cite>_step_impl()</cite> on the solver
+before <cite>_dense_output_impl()</cite> is ever polled, there is no specific
+dense output interpolation available for any of the intermediate points
+computed during startup.  This is similar to other SciPy multistep
+methods, but could be adapted if desired.</p>
+</div>
+<ul class="simple">
+<li><p>Use of an analytic function for startup point generation is considered
+a research tool only.  At present it appears to be unreliable where
+higher starting orders are used i.e. <span class="math notranslate nohighlight">\(p_{init} \leq 3\)</span></p></li>
+</ul>
+<dl class="method">
+<dt id="modespy.modes.MODES.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">fun: Callable[[float, Union[float, Sequence[float], Type[numpy.ndarray]], Optional[Any]], Union[float, Sequence[float], Type[numpy.ndarray]]], t0: float, y0: Union[float, Sequence[float], Type[numpy.ndarray]], t_bound: float, tol: float = 0.0001, jac: Union[Callable[[float, Union[float, Sequence[float], Type[numpy.ndarray]], Optional[Any]], Union[float, Sequence[float], Type[numpy.ndarray]]], numpy.ndarray, None] = None, vectorized=False, first_step: Union[float, str] = 'Deterministic', modes_p: Optional[Sequence[int]] = None, modes_method: Union[str, Sequence[str]] = 'Adams-Moulton', modes_filter: Union[str, Tuple[str, float], None, Sequence[Union[str, Tuple[str, float], None]]] = 'PI3333', modes_start_idx: Optional[int] = None, modes_config: Dict = None, modes_stats: dict = None, **extraneous</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets up the MODES solution and is called by <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fun</strong> (<em>callable</em>) – Right-hand side of the system supplied by <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code>.  The
+calling signature is <code class="docutils literal notranslate"><span class="pre">fun(t,</span> <span class="pre">y)</span></code> and it can be vectorized;
+refer to SciPy documentation for details.</p></li>
+<li><p><strong>t0</strong> (<em>float</em>) – Initial time.</p></li>
+<li><p><strong>y0</strong> (<em>array_like</em><em>, </em><em>shape</em><em> (</em><em>n</em><em>,</em><em>)</em>) – Initial state.  The size of this array sets the problem dimension.</p></li>
+<li><p><strong>t_bound</strong> (<em>float</em>) – Boundary time - representing the end of the integration. The
+integration direction is determined from this value and <cite>t0</cite>.</p></li>
+<li><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Desired solution tolerance (default = 1e-4).  Implementation and
+scaling of errors is complex; refer to source code and MODES
+papers for more details.  See also <cite>s_rel</cite>, <cite>s_abs</cite> and <cite>w_mat</cite>
+in modes_config.</p></li>
+<li><p><strong>jac</strong> (<em>None</em><em>, </em><em>array_like</em><em> or </em><em>callable</em><em>, </em><em>optional</em>) – <p>Jacobian matrix of the right-hand side of the system with
+respect to <cite>y</cite>.  A Jacobian is only needed if an Implicit or
+Implicit + 1 solver is part of the run.  The Jacobian matrix
+has shape (n, n) and its element (i, j) is equal to
+<span class="math notranslate nohighlight">\(df_i / dy_j\)</span>. There are three ways to define the Jacobian:</p>
+<ul>
+<li><p>If array_like, the Jacobian is assumed to be constant.</p></li>
+<li><p>If callable, the Jacobian is assumed to depend on both
+<cite>t</cite> and <cite>y</cite>; it will be called as <code class="docutils literal notranslate"><span class="pre">jac(t,</span> <span class="pre">y)</span></code> when required.</p></li>
+<li><p>If None (default), the Jacobian will be approximated by
+finite differences when required.</p></li>
+</ul>
+</p></li>
+<li><p><strong>vectorized</strong> (<em>bool</em><em>, </em><em>optional</em>) – Whether <cite>fun</cite> is implemented in a vectorized fashion. Default is
+False.</p></li>
+<li><p><strong>first_step</strong> (<em>float</em><em>, </em><em>'Deterministic'</em><em> or </em><em>'Random'</em><em>, </em><em>optional</em>) – <ul>
+<li><p>If float, this sets the initial step size.</p></li>
+<li><p>If ‘Deterministic’ (default) this sets the initial step size
+using a deterministic algorithm; refer to <code class="docutils literal notranslate"><span class="pre">startup()</span></code> for
+details.</p></li>
+<li><p>If ‘Random’ (default) this sets the initial step size
+using a randomised algorithm; refer to <code class="docutils literal notranslate"><span class="pre">startup()</span></code> for
+details.</p></li>
+</ul>
+</p></li>
+<li><p><strong>modes_p</strong> (<em>array_like</em><em>, </em><em>optional</em>) – <p>This specifies the orders <cite>p</cite> to be used by the solvers.  The type
+of argument supplied depends on the value of <cite>modes_method</cite>:</p>
+<ul>
+<li><p>If <cite>modes_method</cite> is a string, all solvers and filters will
+share a common type and orders will span a prescribed range.
+In this case <cite>modes_p</cite> must have two elements representing
+this order range (inclusive), e.g. <code class="docutils literal notranslate"><span class="pre">modes_p=(2,</span> <span class="pre">6)</span></code>.  The
+default value equals <code class="docutils literal notranslate"><span class="pre">p_default</span></code> for the given method.</p></li>
+<li><p>If <cite>modes_method</cite> is an array of strings, then each solver
+must have its own prescribed order.  In this case <cite>modes_p</cite>
+must have the same number of elements as <cite>modes_method</cite> and
+<cite>modes_filter</cite>, e.g. <code class="docutils literal notranslate"><span class="pre">modes_p=(4,</span> <span class="pre">5,</span> <span class="pre">7,</span> <span class="pre">8)</span></code>.</p></li>
+</ul>
+</p></li>
+<li><p><strong>modes_method</strong> (<em>string</em><em> or </em><em>array_like</em><em>[</em><em>string</em><em>]</em><em>, </em><em>optional</em>) – <p>This specifies the kind of solver to use:</p>
+<ul>
+<li><p>If <cite>modes_method</cite> is a string, all solvers and filters will have
+the same type (default = ‘Adams-Moulton’).  See methods.py for
+available types.</p></li>
+<li><p>If <cite>modes_method</cite> is an array of strings, each solver type
+must be specified individually.</p></li>
+</ul>
+</p></li>
+<li><p><strong>modes_filter</strong> (<em>FiltArg</em><em> or </em><em>array_like</em><em>[</em><em>FiltArg</em><em>]</em><em>, </em><em>optional</em>) – <p>This specifies the kind of filter to use:</p>
+<ul>
+<li><p>If <cite>modes_method</cite> is a string, all solvers will use the same
+filter (default = <cite>PI3333</cite>).  Supply either a single string
+representing a default filter, or a tuple of (‘filter name’,
+b) if a bespoke factor is required.  See filters.py for
+available types.</p></li>
+<li><p>If <cite>modes_method</cite> is an array of strings, a separate filter
+must be defined for each solver.  Supply a string or tuple for
+each as described above.</p></li>
+</ul>
+</p></li>
+<li><p><strong>modes_start_idx</strong> (<em>int</em><em>, </em><em>optional</em>) – Specify which solver to commence with by index (not by order)
+i.e. if <code class="docutils literal notranslate"><span class="pre">modes_p=(2,</span> <span class="pre">6)</span></code> then solver index 0 sets <cite>p</cite> = 2,
+index 1 sets <cite>p</cite> = 3, and so on. The default is the first order
+(typically lowest).</p></li>
+<li><p><strong>modes_config</strong> (<em>dict</em><em>[</em><em>string</em><em>, </em><em>Any</em><em>]</em><em>, </em><em>optional</em>) – <p>Minor options for fine-tuning and research are passed by
+including them in this optional dict (unknown entries are
+ignored).  Available options are:</p>
+<dl>
+<dt>’analytic_fn’<span class="classifier">callable</span></dt><dd><p>A function representing a known analytic solution to the
+problem, with a calling signature of <code class="docutils literal notranslate"><span class="pre">y</span> <span class="pre">=</span> <span class="pre">analytic_fn(t)</span></code>
+(default = None).</p>
+</dd>
+<dt>’analytic_start’<span class="classifier">bool</span></dt><dd><p>If True, use the analytic function to generate startup
+points instead of solving for them using a separate one-step
+method (default = False).</p>
+</dd>
+<dt>’impl_its’<span class="classifier">int</span></dt><dd><p>Number of iterations for the primary implicit solver to
+acheive convergence (default = 12).</p>
+</dd>
+<dt>’impl_solver’<span class="classifier">string</span></dt><dd><p>Primary solver to use for converging implicit values (default =
+‘newton_const’).  This can be ‘newton_const’ or any other
+valid argument accepted by <code class="docutils literal notranslate"><span class="pre">scipy.optimize.root()</span></code>,
+e.g. ‘hybr’, ‘lm’, ‘broyden1’, etc.</p>
+</dd>
+<dt>’impl_backup’<span class="classifier">string</span></dt><dd><p>Fallback solver to use if the primary implicit solver fails.
+This can be None, ‘newton_const’ or any other valid argument
+accepted by <code class="docutils literal notranslate"><span class="pre">scipy.optimize.root()</span></code> (as above).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The backup solver always numerically estimates its
+own Jacobian.  This is done in case the user supplied
+Jacobian calculation itself is unstable / poorly
+conditioned.</p>
+</div>
+</dd>
+<dt>’r_min’<span class="classifier">float</span></dt><dd><p>Largest legal reduction in step size allowed (default = 0.8).</p>
+</dd>
+<dt>’r_max’<span class="classifier">float</span></dt><dd><p>Largest legal enlargement in step size allowed (default = 1.2).</p>
+</dd>
+<dt>’s_rel’<span class="classifier">float</span></dt><dd><p>Factor to apply for relative errors (default = 0).</p>
+</dd>
+<dt>’s_abs’<span class="classifier">float</span></dt><dd><p>Factor to apply for absolute errors (default = 1).</p>
+</dd>
+<dt>’startup_method’<span class="classifier">string</span></dt><dd><p>Type of solver to use when generating startup points
+(default = ‘RK45’).  Currently supported values are the
+Runge-Kutta solvers supported by
+<code class="docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp()</span></code>: ‘RK23’, ‘RK45’ or ‘DOP853’.</p>
+</dd>
+<dt>’unit_errors’<span class="classifier">bool</span></dt><dd><p>Apply unit scaling to errors (default = False).</p>
+</dd>
+<dt>’verbose’<span class="classifier">bool</span></dt><dd><p>Print output to show run progress (default = False).</p>
+</dd>
+<dt>’w_mat’<span class="classifier">ndarray, shape (ndim, ndim)</span></dt><dd><p>Scaling matrix for errors.  The default is a unit matrix
+i.e. <code class="docutils literal notranslate"><span class="pre">w_mat</span> <span class="pre">=</span> <span class="pre">np.eye(ndim,</span> <span class="pre">ndim)</span></code>.</p>
+</dd>
+</dl>
+</p></li>
+<li><p><strong>modes_stats</strong> (<em>dict</em><em>[</em><em>str</em><em>, </em><em>array_like</em><em>]</em><em>, </em><em>optional</em>) – <p>An empty dictionary may be supplied which will be overwritten to
+allow detailed statistics to be returned.  It will be returned
+with these fields:  ‘t’, ‘err_norm’, ‘h’, ‘p’, ‘rej_steps’.  If
+an analytic function is supplied it will also include
+‘y_analytic’ and ‘err_norm_analytic’.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The number of points in these arrays may not equal the
+number of points returned by the main method, as they will
+also include startup points.</p>
+</div>
+</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES._coeffs_explicit">
+<code class="sig-name descname">_coeffs_explicit</code><span class="sig-paren">(</span><em class="sig-param">theta: numpy.ndarray</em>, <em class="sig-param">trim: int = None</em><span class="sig-paren">)</span> &#x2192; Optional[numpy.ndarray]<a class="headerlink" href="#modespy.modes.MODES._coeffs_explicit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the polynomial coefficients for an explicit <cite>k</cite>-step
+methods of order <cite>k</cite>.</p>
+<p>At least <code class="docutils literal notranslate"><span class="pre">len(thetas)</span> <span class="pre">+</span> <span class="pre">1</span></code> past values from <cite>self.t</cite>. <cite>self.y</cite> and
+<cite>self.y_dot</cite> are required for solution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>theta</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>k-1</em><em>,</em><em>)</em>) – <span class="math notranslate nohighlight">\(\theta\)</span> values defining the method.</p></li>
+<li><p><strong>trim</strong> (<em>int</em><em>, </em><em>optional</em>) – If non-zero then this value is used as the index of the last
+historic value to use.  E.G. Using <code class="docutils literal notranslate"><span class="pre">trim</span> <span class="pre">=</span> <span class="pre">-1</span></code> causes the last
+value to be omitted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>x</strong> – Returns the polynomial coefficients found by solving the linear
+system.  If insufficient data was available to find a solution
+it returns None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES._coeffs_implicit">
+<code class="sig-name descname">_coeffs_implicit</code><span class="sig-paren">(</span><em class="sig-param">thetas: numpy.ndarray</em>, <em class="sig-param">coeffs_start: numpy.ndarray</em>, <em class="sig-param">t_new: float</em><span class="sig-paren">)</span> &#x2192; Optional[numpy.ndarray]<a class="headerlink" href="#modespy.modes.MODES._coeffs_implicit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the polynomial coefficients for an implicit <cite>k</cite>-step methods
+of order <cite>k</cite>.  Operation as per <code class="docutils literal notranslate"><span class="pre">_coeffs_explicit()</span></code>, except where
+noted.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coeffs_start</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>k+1</em><em>, </em><em>n</em><em>)</em>) – A matrix containing an estimate starting point for the implicit
+solution.  Typically the coefficients for the previous
+polynomials are used.</p></li>
+<li><p><strong>t_new</strong> (<em>float</em>) – The new time value.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>x</strong> – Returns the polynomial coefficients found by solving the
+non-linear system.  If insufficient data was available to find
+a solution it returns None.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray or None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES._coeffs_implicit_plus">
+<code class="sig-name descname">_coeffs_implicit_plus</code><span class="sig-paren">(</span><em class="sig-param">thetas: numpy.ndarray</em>, <em class="sig-param">coeffs_start: numpy.ndarray</em>, <em class="sig-param">t_new: float</em>, <em class="sig-param">trim: int = None</em><span class="sig-paren">)</span> &#x2192; Optional[numpy.ndarray]<a class="headerlink" href="#modespy.modes.MODES._coeffs_implicit_plus" title="Permalink to this definition">¶</a></dt>
+<dd><p>Compute the polynomial coefficients for an implicit <cite>k</cite>-step methods
+of order <cite>k</cite> + 1.  Operation as per <code class="docutils literal notranslate"><span class="pre">_coeffs_implicit()</span></code>, except
+where noted.</p>
+<p><strong>Differences to MATLAB Implementation</strong></p>
+<ul class="simple">
+<li><p>There is a subtle change to <code class="docutils literal notranslate"><span class="pre">flip()</span></code> when unpacking unknowns.</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>coeffs_start</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>k+2</em><em>, </em><em>n</em><em>)</em>) – Similar to <code class="docutils literal notranslate"><span class="pre">coeffs_implicit()</span></code>.</p></li>
+<li><p><strong>trim</strong> (<em>int</em>) – As per <code class="docutils literal notranslate"><span class="pre">_coeffs_explicit()</span></code>.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES._dense_output_impl">
+<code class="sig-name descname">_dense_output_impl</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; modespy.modes.MODESDenseOutput<a class="headerlink" href="#modespy.modes.MODES._dense_output_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES._record_stats">
+<code class="sig-name descname">_record_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES._record_stats" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES._solve_implicit_system">
+<code class="sig-name descname">_solve_implicit_system</code><span class="sig-paren">(</span><em class="sig-param">resid_fn</em>, <em class="sig-param">w</em>, <em class="sig-param">jac_fn</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES._solve_implicit_system" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solves a given implicit system using a primary solver or fallback
+solver if the primary solver fails (where requested).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>resid_fn</strong> (<em>callable</em>) – Function returning the RHS residual of the matrix system.</p></li>
+<li><p><strong>w</strong> (<em>ndarray</em>) – Solution array.</p></li>
+<li><p><strong>jac_fn</strong> (<em>callable</em>) – Jacobian function.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>x</strong> – Solution to the system.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>ndarray</p>
+</dd>
+<dt class="field-even">Raises</dt>
+<dd class="field-even"><p><strong>RuntimeError</strong> – If a primary (or fallback) solution could not be computed.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES._step_impl">
+<code class="sig-name descname">_step_impl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES._step_impl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called automatically by <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code>, this performs one step of the
+ODE solution by doing the following for each order / solver currently
+running:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Generates a predictor and corrector point where possible.</p></li>
+<li><p>Compute the error and reject / accept step.</p></li>
+<li><p>Update the current running solvers (normally just different <cite>p</cite>
+values).</p></li>
+</ul>
+</div></blockquote>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For the first few startup steps, the results are drawn
+from pre-computed startup points. This gives the solver the
+appearance of a one-step method to <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code> which is
+designed with this in mind.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES.auto_stepsize">
+<code class="sig-name descname">auto_stepsize</code><span class="sig-paren">(</span><em class="sig-param">random_perturb: bool = False</em>, <em class="sig-param">rms_norm: bool = False</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#modespy.modes.MODES.auto_stepsize" title="Permalink to this definition">¶</a></dt>
+<dd><p>An auto-scaling procedure for computing an initial stepsize for ODE
+IVP linear multistep solvers.  This is called from <code class="docutils literal notranslate"><span class="pre">__init__</span></code> if
+required during setup and the stepsize is based on the
+starting order, time direction and last <cite>y</cite> point, which must
+already be defined (these are typically just the single starting
+values).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>random_perturb</strong> (<em>bool</em><em>, </em><em>optional</em>) – If False (default) the initial stepsize is computed using a
+deterministic algorithm.  Otherwise, a small random perturbation
+is used.</p></li>
+<li><p><strong>rms_norm</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, take the <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> of the norm.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>h</strong> – Computed stepsize.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES.correct">
+<code class="sig-name descname">correct</code><span class="sig-paren">(</span><em class="sig-param">sol_idx: int</em><span class="sig-paren">)</span> &#x2192; Optional[numpy.ndarray]<a class="headerlink" href="#modespy.modes.MODES.correct" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a corrector polynomial for the solver at index
+<cite>sol_idx</cite> and solution point (where possible) for the next timepoint.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES.h">
+<em class="property">property </em><code class="sig-name descname">h</code><a class="headerlink" href="#modespy.modes.MODES.h" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the stepsize <cite>h</cite> associated with the current order.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES.nsols">
+<em class="property">property </em><code class="sig-name descname">nsols</code><a class="headerlink" href="#modespy.modes.MODES.nsols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the total number of separate solvers / orders used.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES.p">
+<em class="property">property </em><code class="sig-name descname">p</code><a class="headerlink" href="#modespy.modes.MODES.p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the current order <cite>p</cite>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES.predict">
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">sol_idx: int</em><span class="sig-paren">)</span> &#x2192; Optional[numpy.ndarray]<a class="headerlink" href="#modespy.modes.MODES.predict" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generates a predictor polynomial for the solver at index
+<cite>sol_idx</cite> and prediction point (where possible), for the next
+timepoint.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Original MATLAB implementation includes a <code class="docutils literal notranslate"><span class="pre">tril()</span></code>
+which has been omitted here.  Refer to source code for more details.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES.set_running_solvers">
+<code class="sig-name descname">set_running_solvers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.set_running_solvers" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the method that performs order control.  It is called at the
+end of <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> and again after each successful step in
+<code class="docutils literal notranslate"><span class="pre">_step_impl()</span></code>.  It performs two tasks:</p>
+<ol class="arabic simple">
+<li><p>Chooses Current Order:  Decides which solver (i.e. order /
+method) is the ‘best’ to proceed with for the next step.
+<cite>self.sol_idx</cite> is set to the index of the ‘best’ solver.</p></li>
+<li><p>Sets Running Orders:  Decides which solvers to advance together
+for the next step.  The flags in <cite>self.solvers[…].running</cite> are
+set either True or False.</p></li>
+</ol>
+<p>This function can be overridden to use different advancement / order
+control strategies if desired.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This default implementation uses the same method for order
+control as the original MATLAB code, which is to advance the solver
+on each side of the current solver.  The current solver is updated
+based on an internal state <cite>delta_p</cite> that is continuously updated
+by comparing the efficiencies of the solvers running on either
+side.  When the order changes <cite>delta_p</cite> is reset to zero.</p>
+</div>
+<p><strong>Differences to MATLAB Implementation</strong></p>
+<ul class="simple">
+<li><p>The original MATLAB code monitors orders above and below by
+running an inaccessible / fictitous order on each side; this is
+not done here.</p></li>
+<li><p>If the current solver / order is the top or bottom, <cite>del_p_hi</cite> /
+<cite>_lo</cite> is set to 0 giving no preference to that direction. Also
+if we assume a fictitious higher <cite>sigma</cite> = 1 then +/- <cite>dp</cite> will be
+zero because one of the terms will be zero.</p></li>
+<li><p>From the preprint TOMS paper, instead of Eqn 23 the technique of
+computing <cite>p</cite> +/- 1/2 has been replaced with the average of the
+two adjacent <cite>p</cite> values.  This allows us to use adjacent <cite>p</cite>
+values that are not just +/- 1 steps.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES.startup">
+<code class="sig-name descname">startup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.startup" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate the required starting points for the multi-step method at
+of the required order.  This is done by adding new solution points
+until <cite>k</cite> points are present (acknowledging any stored points).
+This is done using either an explicit Runge-Kutta style solver or a
+known analytic solution  at <cite>h</cite> intervals.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This method is essentially a deferred section of
+<code class="docutils literal notranslate"><span class="pre">__init___</span></code> that sets up the data history and starting points.
+It is separated for the specific case where multiple solvers may
+be setup that share a common t, y, y’ history.</p>
+<p>By the time we reach this point, there must be at least one t, y,
+y’ value present in the history.</p>
+</div>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES.t">
+<em class="property">property </em><code class="sig-name descname">t</code><a class="headerlink" href="#modespy.modes.MODES.t" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES.vprint">
+<code class="sig-name descname">vprint</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.vprint" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODES.y">
+<em class="property">property </em><code class="sig-name descname">y</code><a class="headerlink" href="#modespy.modes.MODES.y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="modespy.modes.MODESDenseOutput">
+<em class="property">class </em><code class="sig-prename descclassname">modespy.modes.</code><code class="sig-name descname">MODESDenseOutput</code><span class="sig-paren">(</span><em class="sig-param">t_old: float</em>, <em class="sig-param">t: float</em>, <em class="sig-param">sol_type: modespy.methods.SolverType</em>, <em class="sig-param">coeffs: numpy.ndarray</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODESDenseOutput" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.integrate._ivp.base.DenseOutput</span></code></p>
+<p>MODESDenseOutput provides interpolation for intermediate values
+between MODES timesteps.  This is done by storing the corrector
+polynomial of the main running solver / order After each successful
+step, along with the solver type and the last time step (<cite>t_old</cite> → <cite>t</cite>).</p>
+<dl class="method">
+<dt id="modespy.modes.MODESDenseOutput.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">t_old: float</em>, <em class="sig-param">t: float</em>, <em class="sig-param">sol_type: modespy.methods.SolverType</em>, <em class="sig-param">coeffs: numpy.ndarray</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODESDenseOutput.__init__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.MODESDenseOutput._call_impl">
+<code class="sig-name descname">_call_impl</code><span class="sig-paren">(</span><em class="sig-param">t: float</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODESDenseOutput._call_impl" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="modespy.modes.SolverInstance">
+<em class="property">class </em><code class="sig-prename descclassname">modespy.modes.</code><code class="sig-name descname">SolverInstance</code><span class="sig-paren">(</span><em class="sig-param">p: int, method: modespy.methods.Multistep, filter: numpy.ndarray, q_len: int, h: collections.deque, r_ctrl: collections.deque, poly_pred: Optional[numpy.ndarray], poly_corr: Optional[numpy.ndarray], running: bool</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.SolverInstance" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Container class used to hold all runtime data for a single instance
+of a specific ODE solver type operating on a single order.</p>
+<dl class="method">
+<dt id="modespy.modes.SolverInstance.__init__">
+<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">p: int, method: modespy.methods.Multistep, filter: numpy.ndarray, q_len: int, h: collections.deque, r_ctrl: collections.deque, poly_pred: Optional[numpy.ndarray], poly_corr: Optional[numpy.ndarray], running: bool</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#modespy.modes.SolverInstance.__init__" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="modespy.modes.SolverInstance.theta">
+<em class="property">property </em><code class="sig-name descname">theta</code><a class="headerlink" href="#modespy.modes.SolverInstance.theta" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">MODES Module</a><ul>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#module-modespy.modes">Members</a><ul>
+<li><a class="reference internal" href="#future">Future</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to MODESpy</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="modespy.filters.html"
+                        title="next chapter">Filters Module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/modespy.modes.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modespy.filters.html" title="Filters Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to MODESpy"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Eric J. Whitney.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

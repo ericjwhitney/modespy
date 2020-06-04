@@ -1,0 +1,217 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Utilities Module &#8212; modespy 0.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tkinter Examples Module" href="modespy.tk_examples.html" />
+    <link rel="prev" title="Methods Module" href="modespy.methods.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modespy.tk_examples.html" title="Tkinter Examples Module"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="modespy.methods.html" title="Methods Module"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="utilities-module">
+<span id="modespy-util"></span><h1>Utilities Module<a class="headerlink" href="#utilities-module" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#modespy.util.newton_const" title="modespy.util.newton_const"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modespy.util.newton_const</span></code></a></p></td>
+<td><p>Solve system of equations using a Newton-Raphson iteration with a constant Jacobian term computed only on the first iteration.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#modespy.util.pad_coeffs" title="modespy.util.pad_coeffs"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modespy.util.pad_coeffs</span></code></a></p></td>
+<td><p>Return polynomial coefficients <cite>coeffs</cite> with the higher order end padded with rows of zero to suit requested higher order <cite>target_p</cite>.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#modespy.util.polyval_cols" title="modespy.util.polyval_cols"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modespy.util.polyval_cols</span></code></a></p></td>
+<td><p>Evaluate multiple polynomials as <em>columns</em> of <cite>p</cite>, using the same value <cite>x</cite> each time.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="module-modespy.util">
+<span id="members"></span><h2>Members<a class="headerlink" href="#module-modespy.util" title="Permalink to this headline">¶</a></h2>
+<p>Utility functions used in various places by MODESpy.</p>
+<p><strong>Differences to MATLAB Implementation</strong></p>
+<ul class="simple">
+<li><p><strong>(Version 0.9.0)</strong> Convergence check of modified Newton-Raphson method has
+been changed.  Refer to <code class="docutils literal notranslate"><span class="pre">newton_const()</span></code> source code for details.</p></li>
+</ul>
+<dl class="function">
+<dt id="modespy.util.newton_const">
+<code class="sig-prename descclassname">modespy.util.</code><code class="sig-name descname">newton_const</code><span class="sig-paren">(</span><em class="sig-param">fun</em>, <em class="sig-param">x0</em>, <em class="sig-param">*</em>, <em class="sig-param">jac</em>, <em class="sig-param">args=()</em>, <em class="sig-param">tol=1e-06</em>, <em class="sig-param">options=None</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.util.newton_const" title="Permalink to this definition">¶</a></dt>
+<dd><p>Solve system of equations using a Newton-Raphson iteration with a
+constant Jacobian term computed only on the first iteration.  This
+function is designed to be called in an identical fashion as <code class="docutils literal notranslate"><span class="pre">root()</span></code>
+in <cite>scipy.optimise</cite>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>fun</strong> (<em>callable</em>) – A function <code class="docutils literal notranslate"><span class="pre">f(x,</span> <span class="pre">*args)</span></code> that takes a vector argument, and
+returns a value of the same length.</p></li>
+<li><p><strong>x0</strong> (<em>ndarray</em>) – The starting estimate for the root of <code class="docutils literal notranslate"><span class="pre">fun(x)</span> <span class="pre">=</span> <span class="pre">0</span></code>.</p></li>
+<li><p><strong>jac</strong> (<em>array_like</em><em> or </em><em>callable</em>) – <p>Jacobian matrix of the right-hand side of the system. The Jacobian
+matrix has shape (n, n) and element (i, j) is equal to
+<span class="math notranslate nohighlight">\(df_i/dy_j\)</span>:</p>
+<ul>
+<li><p>If array-like:  It is assumed to be a constant matrix.</p></li>
+<li><p>If callable, the Jacobian is assumed to depend on both <cite>t</cite> and
+<cite>y</cite>; it will be called once-only as <code class="docutils literal notranslate"><span class="pre">jac(t,</span> <span class="pre">y)</span></code>.</p></li>
+</ul>
+</p></li>
+<li><p><strong>args</strong> (<em>tuple</em><em>, </em><em>optional</em>) – Any extra arguments to <cite>fun</cite>.</p></li>
+<li><p><strong>tol</strong> (<em>float</em>) – The calculation will terminate if the infinity norm of the
+last correction step was less than <cite>tol</cite> (default = 1e-6).</p></li>
+<li><p><strong>options</strong> (<em>dict</em><em>, </em><em>optional</em>) – <dl class="simple">
+<dt>A dictionary of solver options.  Available options are:</dt><dd><dl class="simple">
+<dt>’maxiter’<span class="classifier">int</span></dt><dd><p>The maximum number of iterations / calls to the function
+(default = 50).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><em>Bunched object with the following fields</em></p></li>
+<li><p><strong>x</strong> (<em>ndarray</em>) – Solution vector.</p></li>
+<li><p><strong>success</strong> (<em>bool</em>) – True if the solution was found within required tolerance and
+number of iterations.</p></li>
+<li><p><strong>status</strong> (<em>int</em>) –</p>
+<ul>
+<li><p>0: The solver finished successfully.</p></li>
+<li><p>1: The number of calls to <cite>f(x)</cite> has reached <code class="docutils literal notranslate"><span class="pre">maxfev</span></code>.</p></li>
+</ul>
+</li>
+<li><p><strong>message</strong> (<em>str</em>) – Verbose description of the status.</p></li>
+<li><p><strong>nfev</strong> (<em>int</em>) – Number of function (RHS) evaluations.</p></li>
+<li><p><strong>njev</strong> (<em>int</em>) – Number of Jacobian evaluations.</p></li>
+<li><p><strong>nit</strong> (<em>int</em>) – Number of iterations of the solver.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="modespy.util.pad_coeffs">
+<code class="sig-prename descclassname">modespy.util.</code><code class="sig-name descname">pad_coeffs</code><span class="sig-paren">(</span><em class="sig-param">coeffs: numpy.ndarray</em>, <em class="sig-param">target_p: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#modespy.util.pad_coeffs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return polynomial coefficients <cite>coeffs</cite> with the higher order end
+padded with rows of zero to suit requested higher order <cite>target_p</cite>.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="modespy.util.polyval_cols">
+<code class="sig-prename descclassname">modespy.util.</code><code class="sig-name descname">polyval_cols</code><span class="sig-paren">(</span><em class="sig-param">p: numpy.ndarray</em>, <em class="sig-param">x: float</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.util.polyval_cols" title="Permalink to this definition">¶</a></dt>
+<dd><p>Evaluate multiple polynomials as <em>columns</em> of <cite>p</cite>, using the same
+value <cite>x</cite> each time.  Returns an array of the results.</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Utilities Module</a><ul>
+<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#module-modespy.util">Members</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="modespy.methods.html"
+                        title="previous chapter">Methods Module</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="modespy.tk_examples.html"
+                        title="next chapter">Tkinter Examples Module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/modespy.util.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modespy.tk_examples.html" title="Tkinter Examples Module"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="modespy.methods.html" title="Methods Module"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Eric J. Whitney.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>

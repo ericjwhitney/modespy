@@ -1,0 +1,171 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to MODESpy &#8212; modespy 0.9.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="MODES Module" href="modespy.modes.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modespy.modes.html" title="MODES Module"
+             accesskey="N">next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">modespy 0.9.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-modespy">
+<h1>Welcome to MODESpy<a class="headerlink" href="#welcome-to-modespy" title="Permalink to this headline">¶</a></h1>
+<p><strong>MODESpy</strong> implements generic methods for constructing and using
+parameterised linear multi-step methods to solve Ordinary Differential
+Equation Initial Value Problems (ODE IVPs). It is a Python implementation
+based on the MODES toolbox (Version 1.0.0) written in MATLAB from Lund
+University (see Authors below).</p>
+<p>These methods are of variable step-size and order, and are regulated using
+digital control theory. MODESpy allows experimentation with different
+methods and regulation settings. Included is also a library of standard
+problems, which can be used to evaluate methods and settings.</p>
+<div class="section" id="version">
+<h2>Version<a class="headerlink" href="#version" title="Permalink to this headline">¶</a></h2>
+<p>The current version is <strong>0.9.0</strong>.  <strong>MODESpy</strong> is designed for Python &gt;= 3.7
+and is platform agnostic.</p>
+</div>
+<div class="section" id="authors">
+<h2>Authors<a class="headerlink" href="#authors" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Python version 0.9.0 written by Eric J. Whitney, 2020.</p></li>
+<li><dl class="simple">
+<dt>Original MATLAB toolbox implementation by:</dt><dd><ul>
+<li><p>C. Arévalo - Center for Mathematical Sciences, Lund Institute of
+Technology, Lund, Sweden.</p></li>
+<li><p>E Jonsson-Glans, J. Olander - HiQ Ace AB, Linköping, Sweden.</p></li>
+<li><p>M. Selva-Soto - Department of Mathematical Engineering, University of
+Concepción, Chile.</p></li>
+<li><p>G. Söderlind - Center for Mathematical Sciences, Lund University, Lund,
+Sweden.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The current version of the MATLAB toolbox is located at
+<a class="reference external" href="https://github.com/mss1972/MODES_v1.0">https://github.com/mss1972/MODES_v1.0</a></p>
+</div>
+<div class="section" id="modules">
+<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modespy.modes.html">MODES - Generic multi-step, multi-order ODE solver (including example code).</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modespy.filters.html">Filters - Various standard discrete stepsize controllers.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modespy.methods.html">Methods - Various explicit and implicit methods of different order.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modespy.util.html">Utility - Miscellaneous utility functions.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modespy.tk_examples.html">Tkinter Examples - GUI for showing examples of different solution methods.</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modespy.std_problems.html">Standard Problems - Collection of standard initial value problems.</a></li>
+</ul>
+</div>
+</div>
+<div class="section" id="copyright">
+<h2>Copyright<a class="headerlink" href="#copyright" title="Permalink to this headline">¶</a></h2>
+<p>Copyright (c) 2020 Eric J. Whitney.  <strong>MODESpy</strong> is provided free of charge
+for use under the conditions of the MIT License (see LICENSE file).</p>
+</div>
+<div class="section" id="indices-and-tables">
+<h2>Indices and Tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to MODESpy</a><ul>
+<li><a class="reference internal" href="#version">Version</a></li>
+<li><a class="reference internal" href="#authors">Authors</a></li>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+<li><a class="reference internal" href="#copyright">Copyright</a></li>
+<li><a class="reference internal" href="#indices-and-tables">Indices and Tables</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Next topic</h4>
+  <p class="topless"><a href="modespy.modes.html"
+                        title="next chapter">MODES Module</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/index.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="modespy.modes.html" title="MODES Module"
+             >next</a> |</li>
+        <li class="nav-item nav-item-0"><a href="#">modespy 0.9.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2020, Eric J. Whitney.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    </div>
+  </body>
+</html>
