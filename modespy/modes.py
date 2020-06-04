@@ -890,12 +890,12 @@ class MODES(sp_int.OdeSolver):
                     # Add 1e-16 to `d` to prevent divide-by-zero and normalise.
                     # Note:  Presently uses infinity norm.
                     d = (self.s_rel * np.abs(y_corr[idx]) + self.s_abs + 1e-16)
-                    scl_err = self.w_mat @ new_err / d  # <= OK (CHECKED)
+                    scl_err = self.w_mat @ new_err / d
 
                     sol_i.r_ctrl.append(np.linalg.norm(
-                        scl_err, ord=np.inf) / self.tol)  # <= CHK OK
+                        scl_err, ord=np.inf) / self.tol)
 
-                    try:  # Try intended controller. # <= OK (CHECKED)
+                    try:  # Try intended controller.
                         r_smooth[idx] = filter_r(sol_i.filter, p,
                                                  sol_i.h, sol_i.r_ctrl,
                                                  self.unit_errors)
@@ -1308,7 +1308,7 @@ class MODES(sp_int.OdeSolver):
         for i in range(k):
             s_i[i] = t[-1 - i] - t_new  # Accum. step size.
             s1[i * ndim: (i + 1) * ndim] = (cos_th[i] * y[-1 - i] + sin_th[i]
-                                            * h_k1i[i] * ydot[-1 - i])  # CHKD
+                                            * h_k1i[i] * ydot[-1 - i])
         if 'i' in locals():
             del i  # To avoid inner scope errors.
 
@@ -1331,12 +1331,12 @@ class MODES(sp_int.OdeSolver):
                     np.asarray(self.fun(
                         t_new, w_try[k * ndim: (k + 1) * ndim])) -
                     w_try[(k - 1) * ndim: k * ndim])
-            return F  # <= CHKD OK
+            return F
 
         # noinspection PyUnusedLocal,PyPep8Naming
         def const_jacobian(*unused_args):
             # def const_jacobian():
-            d = self.jac(t_new, y[-1])  # <= CHKD OK
+            d = self.jac(t_new, y[-1])
             unit = np.eye(ndim)
             J = np.zeros(((k + 1) * ndim, (k + 1) * ndim))
             for i3 in range(k):
@@ -1351,11 +1351,11 @@ class MODES(sp_int.OdeSolver):
 
             J[k * ndim: (k + 1) * ndim, (k - 1) * ndim: k * ndim] = -unit
             J[k * ndim: (k + 1) * ndim, k * ndim: (k + 1) * ndim] = d
-            return J  # <= CHKD OK
+            return J
 
         res_x = self._solve_implicit_system(resid, w, const_jacobian)
 
-        p = np.reshape(res_x, (k + 1, ndim))  # <= CHKD OK
+        p = np.reshape(res_x, (k + 1, ndim))
         return p
 
     def _coeffs_implicit_plus(self, thetas: np.ndarray,
@@ -1399,7 +1399,7 @@ class MODES(sp_int.OdeSolver):
         # `y` and `y_dot` appear in these equations because these are actually
         # the last two coefficients defining the polynomial.
         cos_th = np.cos(thetas)
-        s1 = np.zeros((k - 1) * ndim)  # <= CHKD
+        s1 = np.zeros((k - 1) * ndim)
         h_kmi, s_i = np.empty(k - 1), np.empty(k - 1)
         sin_th_h = np.empty(k-1)
         for i in range(k - 1):
@@ -1408,7 +1408,7 @@ class MODES(sp_int.OdeSolver):
             sin_th_h[i] = np.sin(thetas[i]) * h_kmi[i]
             s1[i * ndim:(i+1) * ndim] = (
                     cos_th[i] * (y[-1] - y[-2 - i] + s_i[i] * ydot[-1]) +
-                    sin_th_h[i] * (ydot[-1] - ydot[-2 - i]))  # <= CHKD OK
+                    sin_th_h[i] * (ydot[-1] - ydot[-2 - i]))
 
         if 'i' in locals():
             del i  # To avoid inner scope errors.
@@ -1417,7 +1417,7 @@ class MODES(sp_int.OdeSolver):
             f_vec = np.zeros(k * ndim)
             for i2 in range(k - 1):
                 fs_vec = ((cos_th[i2] * s_i[i2] + sin_th_h[i2] * (k + 1)) *
-                          w_try[(k - 1) * ndim:k * ndim])  # <= CHKD OK
+                          w_try[(k - 1) * ndim:k * ndim])
                 for j in range(1, k):
                     fs_vec = (s_i[i2] * fs_vec +
                               (cos_th[i2] * s_i[i2] + (k + 1 - j) *
@@ -1439,7 +1439,7 @@ class MODES(sp_int.OdeSolver):
             ypn = hn * sn + ydot[-1]
             f_vec[(k - 1) * ndim: k * ndim] = (np.asarray(self.fun(t_new, yn))
                                                - ypn)
-            return f_vec  # <= CHKD OK
+            return f_vec
 
         # noinspection PyUnusedLocal, PyPep8Naming
         def const_jacobian(*unused_args):
@@ -1462,7 +1462,7 @@ class MODES(sp_int.OdeSolver):
                 J[(k - 1) * ndim:k * ndim, j2 * ndim:(j2 + 1) * ndim] = hkj * (
                         hk * d - (j2 + 2) * unit)
                 hkj *= hk
-            return J  # <= CHKD OK
+            return J
 
         res_x = self._solve_implicit_system(resid, w, const_jacobian)
 
