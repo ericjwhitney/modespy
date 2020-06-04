@@ -11,7 +11,7 @@ The current version is **0.9.0**.
 
 ## Installation
 
-MODESpy relies on the installation of NumPy, 
+MODESpy relies on the installation of SciPy and NumPy, 
 **[see this link](https://docs.scipy.org/doc/numpy/user/install.html)**.
 
 Install MODESpy using the typical pip installation methods, for example:
