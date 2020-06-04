@@ -11,11 +11,11 @@ setuptools.setup(
     description="Parameterised linear multi-step methods for the solution of "
                 "Ordinary Differential Equations (ODEs).",
     include_package_data=True,  # <<< Note!
-    install_requires=['numpy', 'scipy'],
+    install_requires=['numpy', 'scipy', 'matplotlib'],
     keywords='ODE differential equations mathematics',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    setup_requires=['numpy', 'scipy'],
+    setup_requires=['numpy', 'scipy', 'matplotlib'],
     url="https://github.com/ericjwhitney/modespy",
     packages=setuptools.find_packages(include=['modespy', 'modespy.*']),
     python_requires='>=3.7',
