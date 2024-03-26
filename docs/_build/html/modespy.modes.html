@@ -1,19 +1,18 @@
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>MODES Module &#8212; modespy 0.9.0 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=514cf933" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -35,7 +34,8 @@
         <li class="right" >
           <a href="index.html" title="Welcome to MODESpy"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MODES Module</a></li> 
       </ul>
     </div>  
 
@@ -44,15 +44,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="modes-module">
-<span id="modespy-modes"></span><h1>MODES Module<a class="headerlink" href="#modes-module" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+  <section id="modes-module">
+<span id="modespy-modes"></span><h1>MODES Module<a class="headerlink" href="#modes-module" title="Link to this heading">¶</a></h1>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#modespy.modes.SolverInstance" title="modespy.modes.SolverInstance"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modespy.modes.SolverInstance</span></code></a></p></td>
 <td><p>Container class used to hold all runtime data for a single instance of a specific ODE solver type operating on a single order.</p></td>
@@ -68,9 +64,9 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="module-modespy.modes">
-<span id="members"></span><h2>Members<a class="headerlink" href="#module-modespy.modes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-modespy.modes">
+<span id="members"></span><h2>Members<a class="headerlink" href="#module-modespy.modes" title="Link to this heading">¶</a></h2>
 <p>This module implements the <cite>MODES</cite> class which is drop-in compatible with
 SciPy function <code class="docutils literal notranslate"><span class="pre">scipy.integrate.solve_ivp()</span></code>.  This is the main mechanism by
 which the parameterised multi-step solver is called.  See examples below
@@ -203,11 +199,11 @@ A number of the <em>tunable</em> parameters are adjusted to show how this can be
 <span class="gp">... </span>                              <span class="s1">&#39;verbose&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}</span>
 <span class="gp">... </span>                <span class="p">)</span>
 <span class="go">MODES Solution -&gt; p = [2, 3, 4, 5, 6], Method = dcBDF, Filter = (&#39;H312b&#39;, 10)</span>
-<span class="gp">... </span><span class="mi">18</span> <span class="n">RHS</span> <span class="n">evaluations</span> <span class="n">used</span> <span class="n">during</span> <span class="n">startup</span><span class="o">.</span>
-<span class="gp">...</span>
-<span class="gp">... </span><span class="mi">1207</span> <span class="n">RHS</span> <span class="n">Evaluations</span><span class="p">:</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">2.4585</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mf">0.010501</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">4</span> <span class="p">(</span><span class="mi">34</span> <span class="n">Rejected</span> <span class="n">Steps</span><span class="p">)</span>
-<span class="gp">... </span><span class="mi">1575</span> <span class="n">RHS</span> <span class="n">Evaluations</span><span class="p">:</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">3.2594</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mf">0.16758</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">34</span> <span class="n">Rejected</span> <span class="n">Steps</span><span class="p">)</span>
-<span class="gp">... </span><span class="mi">2561</span> <span class="n">RHS</span> <span class="n">Evaluations</span><span class="p">:</span> <span class="n">t</span> <span class="o">=</span> <span class="mf">117.98</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="mf">2.904</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="mi">2</span> <span class="p">(</span><span class="mi">34</span> <span class="n">Rejected</span> <span class="n">Steps</span><span class="p">)</span>
+<span class="go">... 18 RHS evaluations used during startup.</span>
+<span class="go">...</span>
+<span class="go">... 1207 RHS Evaluations: t = 2.4585, h = 0.010501, p = 4 (34 Rejected Steps)</span>
+<span class="go">... 1575 RHS Evaluations: t = 3.2594, h = 0.16758, p = 2 (34 Rejected Steps)</span>
+<span class="go">... 2561 RHS Evaluations: t = 117.98, h = 2.904, p = 2 (34 Rejected Steps)</span>
 </pre></div>
 </div>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
@@ -266,37 +262,37 @@ which may have a different length.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<div class="section" id="future">
-<h3>Future<a class="headerlink" href="#future" title="Permalink to this headline">¶</a></h3>
+<section id="future">
+<h3>Future<a class="headerlink" href="#future" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Addition of a timer call within <code class="docutils literal notranslate"><span class="pre">_step_impl()</span></code> for each order and
 running averaging would allow work factors to be automatically computed.</p></li>
 </ul>
-<dl class="class">
-<dt id="modespy.modes.AnalyticDenseOutput">
-<em class="property">class </em><code class="sig-prename descclassname">modespy.modes.</code><code class="sig-name descname">AnalyticDenseOutput</code><span class="sig-paren">(</span><em class="sig-param">t_old: float, t: float, fun: Callable[[float], Union[float, Sequence[float], Type[numpy.ndarray]]]</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.AnalyticDenseOutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.integrate._ivp.base.DenseOutput</span></code></p>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="modespy.modes.AnalyticDenseOutput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modespy.modes.</span></span><span class="sig-name descname"><span class="pre">AnalyticDenseOutput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_old</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.AnalyticDenseOutput" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">DenseOutput</span></code></p>
 <p>AnalyticDenseOutput provides a DenseOutput representation of the
 user-supplied analytic function.  This is used when interpolating dense
 points in the very early startup phase of the solution where an analytic
 solution is available.</p>
-<dl class="method">
-<dt id="modespy.modes.AnalyticDenseOutput.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">t_old: float, t: float, fun: Callable[[float], Union[float, Sequence[float], Type[numpy.ndarray]]]</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.AnalyticDenseOutput.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.AnalyticDenseOutput.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_old</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">fun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.AnalyticDenseOutput.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.AnalyticDenseOutput._call_impl">
-<code class="sig-name descname">_call_impl</code><span class="sig-paren">(</span><em class="sig-param">t: float</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.AnalyticDenseOutput._call_impl" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.AnalyticDenseOutput._call_impl">
+<span class="sig-name descname"><span class="pre">_call_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.AnalyticDenseOutput._call_impl" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="modespy.modes.MODES">
-<em class="property">class </em><code class="sig-prename descclassname">modespy.modes.</code><code class="sig-name descname">MODES</code><span class="sig-paren">(</span><em class="sig-param">fun: Callable[[float, Union[float, Sequence[float], Type[numpy.ndarray]], Optional[Any]], Union[float, Sequence[float], Type[numpy.ndarray]]], t0: float, y0: Union[float, Sequence[float], Type[numpy.ndarray]], t_bound: float, tol: float = 0.0001, jac: Union[Callable[[float, Union[float, Sequence[float], Type[numpy.ndarray]], Optional[Any]], Union[float, Sequence[float], Type[numpy.ndarray]]], numpy.ndarray, None] = None, vectorized=False, first_step: Union[float, str] = 'Deterministic', modes_p: Optional[Sequence[int]] = None, modes_method: Union[str, Sequence[str]] = 'Adams-Moulton', modes_filter: Union[str, Tuple[str, float], None, Sequence[Union[str, Tuple[str, float], None]]] = 'PI3333', modes_start_idx: Optional[int] = None, modes_config: Dict = None, modes_stats: dict = None, **extraneous</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.integrate._ivp.base.OdeSolver</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="modespy.modes.MODES">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modespy.modes.</span></span><span class="sig-name descname"><span class="pre">MODES</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_bound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectorized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Deterministic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Adams-Moulton'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PI3333'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_start_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_stats</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extraneous</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">OdeSolver</span></code></p>
 <p>This class implements the generic multi-step, multi-order ODE solver.
 It is derived from SciPy OdeSolver class so that it can be called
 directly by scipy.integrate <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code>.</p>
@@ -323,12 +319,12 @@ methods, but could be adapted if desired.</p>
 a research tool only.  At present it appears to be unreliable where
 higher starting orders are used i.e. <span class="math notranslate nohighlight">\(p_{init} \leq 3\)</span></p></li>
 </ul>
-<dl class="method">
-<dt id="modespy.modes.MODES.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">fun: Callable[[float, Union[float, Sequence[float], Type[numpy.ndarray]], Optional[Any]], Union[float, Sequence[float], Type[numpy.ndarray]]], t0: float, y0: Union[float, Sequence[float], Type[numpy.ndarray]], t_bound: float, tol: float = 0.0001, jac: Union[Callable[[float, Union[float, Sequence[float], Type[numpy.ndarray]], Optional[Any]], Union[float, Sequence[float], Type[numpy.ndarray]]], numpy.ndarray, None] = None, vectorized=False, first_step: Union[float, str] = 'Deterministic', modes_p: Optional[Sequence[int]] = None, modes_method: Union[str, Sequence[str]] = 'Adams-Moulton', modes_filter: Union[str, Tuple[str, float], None, Sequence[Union[str, Tuple[str, float], None]]] = 'PI3333', modes_start_idx: Optional[int] = None, modes_config: Dict = None, modes_stats: dict = None, **extraneous</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.__init__" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fun</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_bound</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0.0001</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jac</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Any</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Type</span><span class="p"><span class="pre">[</span></span><span class="pre">ndarray</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">vectorized</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">first_step</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Deterministic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Adams-Moulton'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'PI3333'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_start_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">modes_stats</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">extraneous</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.__init__" title="Link to this definition">¶</a></dt>
 <dd><p>Sets up the MODES solution and is called by <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>fun</strong> (<em>callable</em>) – Right-hand side of the system supplied by <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code>.  The
 calling signature is <code class="docutils literal notranslate"><span class="pre">fun(t,</span> <span class="pre">y)</span></code> and it can be vectorized;
@@ -475,15 +471,15 @@ also include startup points.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES._coeffs_explicit">
-<code class="sig-name descname">_coeffs_explicit</code><span class="sig-paren">(</span><em class="sig-param">theta: numpy.ndarray</em>, <em class="sig-param">trim: int = None</em><span class="sig-paren">)</span> &#x2192; Optional[numpy.ndarray]<a class="headerlink" href="#modespy.modes.MODES._coeffs_explicit" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES._coeffs_explicit">
+<span class="sig-name descname"><span class="pre">_coeffs_explicit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#modespy.modes.MODES._coeffs_explicit" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the polynomial coefficients for an explicit <cite>k</cite>-step
 methods of order <cite>k</cite>.</p>
 <p>At least <code class="docutils literal notranslate"><span class="pre">len(thetas)</span> <span class="pre">+</span> <span class="pre">1</span></code> past values from <cite>self.t</cite>. <cite>self.y</cite> and
 <cite>self.y_dot</cite> are required for solution.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>theta</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>k-1</em><em>,</em><em>)</em>) – <span class="math notranslate nohighlight">\(\theta\)</span> values defining the method.</p></li>
 <li><p><strong>trim</strong> (<em>int</em><em>, </em><em>optional</em>) – If non-zero then this value is used as the index of the last
@@ -491,25 +487,25 @@ historic value to use.  E.G. Using <code class="docutils literal notranslate"><s
 value to be omitted.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>x</strong> – Returns the polynomial coefficients found by solving the linear
 system.  If insufficient data was available to find a solution
 it returns None.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ndarray or None</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES._coeffs_implicit">
-<code class="sig-name descname">_coeffs_implicit</code><span class="sig-paren">(</span><em class="sig-param">thetas: numpy.ndarray</em>, <em class="sig-param">coeffs_start: numpy.ndarray</em>, <em class="sig-param">t_new: float</em><span class="sig-paren">)</span> &#x2192; Optional[numpy.ndarray]<a class="headerlink" href="#modespy.modes.MODES._coeffs_implicit" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES._coeffs_implicit">
+<span class="sig-name descname"><span class="pre">_coeffs_implicit</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thetas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeffs_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_new</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#modespy.modes.MODES._coeffs_implicit" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the polynomial coefficients for an implicit <cite>k</cite>-step methods
 of order <cite>k</cite>.  Operation as per <code class="docutils literal notranslate"><span class="pre">_coeffs_explicit()</span></code>, except where
 noted.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>coeffs_start</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>k+1</em><em>, </em><em>n</em><em>)</em>) – A matrix containing an estimate starting point for the implicit
 solution.  Typically the coefficients for the previous
@@ -517,20 +513,20 @@ polynomials are used.</p></li>
 <li><p><strong>t_new</strong> (<em>float</em>) – The new time value.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>x</strong> – Returns the polynomial coefficients found by solving the
 non-linear system.  If insufficient data was available to find
 a solution it returns None.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ndarray or None</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES._coeffs_implicit_plus">
-<code class="sig-name descname">_coeffs_implicit_plus</code><span class="sig-paren">(</span><em class="sig-param">thetas: numpy.ndarray</em>, <em class="sig-param">coeffs_start: numpy.ndarray</em>, <em class="sig-param">t_new: float</em>, <em class="sig-param">trim: int = None</em><span class="sig-paren">)</span> &#x2192; Optional[numpy.ndarray]<a class="headerlink" href="#modespy.modes.MODES._coeffs_implicit_plus" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES._coeffs_implicit_plus">
+<span class="sig-name descname"><span class="pre">_coeffs_implicit_plus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">thetas</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeffs_start</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t_new</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">trim</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#modespy.modes.MODES._coeffs_implicit_plus" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the polynomial coefficients for an implicit <cite>k</cite>-step methods
 of order <cite>k</cite> + 1.  Operation as per <code class="docutils literal notranslate"><span class="pre">_coeffs_implicit()</span></code>, except
 where noted.</p>
@@ -539,7 +535,7 @@ where noted.</p>
 <li><p>There is a subtle change to <code class="docutils literal notranslate"><span class="pre">flip()</span></code> when unpacking unknowns.</p></li>
 </ul>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>coeffs_start</strong> (<em>ndarray</em><em>, </em><em>shape</em><em>(</em><em>k+2</em><em>, </em><em>n</em><em>)</em>) – Similar to <code class="docutils literal notranslate"><span class="pre">coeffs_implicit()</span></code>.</p></li>
 <li><p><strong>trim</strong> (<em>int</em>) – As per <code class="docutils literal notranslate"><span class="pre">_coeffs_explicit()</span></code>.</p></li>
@@ -548,44 +544,44 @@ where noted.</p>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES._dense_output_impl">
-<code class="sig-name descname">_dense_output_impl</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; modespy.modes.MODESDenseOutput<a class="headerlink" href="#modespy.modes.MODES._dense_output_impl" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES._dense_output_impl">
+<span class="sig-name descname"><span class="pre">_dense_output_impl</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#modespy.modes.MODESDenseOutput" title="modespy.modes.MODESDenseOutput"><span class="pre">MODESDenseOutput</span></a></span></span><a class="headerlink" href="#modespy.modes.MODES._dense_output_impl" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES._record_stats">
-<code class="sig-name descname">_record_stats</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES._record_stats" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES._record_stats">
+<span class="sig-name descname"><span class="pre">_record_stats</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES._record_stats" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES._solve_implicit_system">
-<code class="sig-name descname">_solve_implicit_system</code><span class="sig-paren">(</span><em class="sig-param">resid_fn</em>, <em class="sig-param">w</em>, <em class="sig-param">jac_fn</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES._solve_implicit_system" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES._solve_implicit_system">
+<span class="sig-name descname"><span class="pre">_solve_implicit_system</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">resid_fn</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jac_fn</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES._solve_implicit_system" title="Link to this definition">¶</a></dt>
 <dd><p>Solves a given implicit system using a primary solver or fallback
 solver if the primary solver fails (where requested).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>resid_fn</strong> (<em>callable</em>) – Function returning the RHS residual of the matrix system.</p></li>
 <li><p><strong>w</strong> (<em>ndarray</em>) – Solution array.</p></li>
 <li><p><strong>jac_fn</strong> (<em>callable</em>) – Jacobian function.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>x</strong> – Solution to the system.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>ndarray</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>RuntimeError</strong> – If a primary (or fallback) solution could not be computed.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES._step_impl">
-<code class="sig-name descname">_step_impl</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES._step_impl" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES._step_impl">
+<span class="sig-name descname"><span class="pre">_step_impl</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES._step_impl" title="Link to this definition">¶</a></dt>
 <dd><p>Called automatically by <code class="docutils literal notranslate"><span class="pre">solve_ivp()</span></code>, this performs one step of the
 ODE solution by doing the following for each order / solver currently
 running:</p>
@@ -606,9 +602,9 @@ designed with this in mind.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES.auto_stepsize">
-<code class="sig-name descname">auto_stepsize</code><span class="sig-paren">(</span><em class="sig-param">random_perturb: bool = False</em>, <em class="sig-param">rms_norm: bool = False</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#modespy.modes.MODES.auto_stepsize" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES.auto_stepsize">
+<span class="sig-name descname"><span class="pre">auto_stepsize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">random_perturb</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rms_norm</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#modespy.modes.MODES.auto_stepsize" title="Link to this definition">¶</a></dt>
 <dd><p>An auto-scaling procedure for computing an initial stepsize for ODE
 IVP linear multistep solvers.  This is called from <code class="docutils literal notranslate"><span class="pre">__init__</span></code> if
 required during setup and the stepsize is based on the
@@ -616,7 +612,7 @@ starting order, time direction and last <cite>y</cite> point, which must
 already be defined (these are typically just the single starting
 values).</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>random_perturb</strong> (<em>bool</em><em>, </em><em>optional</em>) – If False (default) the initial stepsize is computed using a
 deterministic algorithm.  Otherwise, a small random perturbation
@@ -624,43 +620,43 @@ is used.</p></li>
 <li><p><strong>rms_norm</strong> (<em>bool</em><em>, </em><em>optional</em>) – If True, take the <code class="docutils literal notranslate"><span class="pre">sqrt()</span></code> of the norm.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>h</strong> – Computed stepsize.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES.correct">
-<code class="sig-name descname">correct</code><span class="sig-paren">(</span><em class="sig-param">sol_idx: int</em><span class="sig-paren">)</span> &#x2192; Optional[numpy.ndarray]<a class="headerlink" href="#modespy.modes.MODES.correct" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES.correct">
+<span class="sig-name descname"><span class="pre">correct</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sol_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#modespy.modes.MODES.correct" title="Link to this definition">¶</a></dt>
 <dd><p>Generates a corrector polynomial for the solver at index
 <cite>sol_idx</cite> and solution point (where possible) for the next timepoint.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES.h">
-<em class="property">property </em><code class="sig-name descname">h</code><a class="headerlink" href="#modespy.modes.MODES.h" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="modespy.modes.MODES.h">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">h</span></span><a class="headerlink" href="#modespy.modes.MODES.h" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the stepsize <cite>h</cite> associated with the current order.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES.nsols">
-<em class="property">property </em><code class="sig-name descname">nsols</code><a class="headerlink" href="#modespy.modes.MODES.nsols" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="modespy.modes.MODES.nsols">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">nsols</span></span><a class="headerlink" href="#modespy.modes.MODES.nsols" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the total number of separate solvers / orders used.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES.p">
-<em class="property">property </em><code class="sig-name descname">p</code><a class="headerlink" href="#modespy.modes.MODES.p" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="modespy.modes.MODES.p">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">p</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#modespy.modes.MODES.p" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the current order <cite>p</cite>.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES.predict">
-<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">sol_idx: int</em><span class="sig-paren">)</span> &#x2192; Optional[numpy.ndarray]<a class="headerlink" href="#modespy.modes.MODES.predict" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES.predict">
+<span class="sig-name descname"><span class="pre">predict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sol_idx</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="headerlink" href="#modespy.modes.MODES.predict" title="Link to this definition">¶</a></dt>
 <dd><p>Generates a predictor polynomial for the solver at index
 <cite>sol_idx</cite> and prediction point (where possible), for the next
 timepoint.</p>
@@ -671,9 +667,9 @@ which has been omitted here.  Refer to source code for more details.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES.set_running_solvers">
-<code class="sig-name descname">set_running_solvers</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.set_running_solvers" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES.set_running_solvers">
+<span class="sig-name descname"><span class="pre">set_running_solvers</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.set_running_solvers" title="Link to this definition">¶</a></dt>
 <dd><p>This is the method that performs order control.  It is called at the
 end of <code class="docutils literal notranslate"><span class="pre">__init__()</span></code> and again after each successful step in
 <code class="docutils literal notranslate"><span class="pre">_step_impl()</span></code>.  It performs two tasks:</p>
@@ -712,9 +708,9 @@ values that are not just +/- 1 steps.</p></li>
 </ul>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES.startup">
-<code class="sig-name descname">startup</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.startup" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES.startup">
+<span class="sig-name descname"><span class="pre">startup</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.startup" title="Link to this definition">¶</a></dt>
 <dd><p>Generate the required starting points for the multi-step method at
 of the required order.  This is done by adding new solution points
 until <cite>k</cite> points are present (acknowledging any stored points).
@@ -731,90 +727,186 @@ y’ value present in the history.</p>
 </div>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES.t">
-<em class="property">property </em><code class="sig-name descname">t</code><a class="headerlink" href="#modespy.modes.MODES.t" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="modespy.modes.MODES.t">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">t</span></span><a class="headerlink" href="#modespy.modes.MODES.t" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES.vprint">
-<code class="sig-name descname">vprint</code><span class="sig-paren">(</span><em class="sig-param">msg</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.vprint" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODES.vprint">
+<span class="sig-name descname"><span class="pre">vprint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">msg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODES.vprint" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODES.y">
-<em class="property">property </em><code class="sig-name descname">y</code><a class="headerlink" href="#modespy.modes.MODES.y" title="Permalink to this definition">¶</a></dt>
+<dl class="py property">
+<dt class="sig sig-object py" id="modespy.modes.MODES.y">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">y</span></span><a class="headerlink" href="#modespy.modes.MODES.y" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="modespy.modes.MODESDenseOutput">
-<em class="property">class </em><code class="sig-prename descclassname">modespy.modes.</code><code class="sig-name descname">MODESDenseOutput</code><span class="sig-paren">(</span><em class="sig-param">t_old: float</em>, <em class="sig-param">t: float</em>, <em class="sig-param">sol_type: modespy.methods.SolverType</em>, <em class="sig-param">coeffs: numpy.ndarray</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODESDenseOutput" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">scipy.integrate._ivp.base.DenseOutput</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="modespy.modes.MODESDenseOutput">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modespy.modes.</span></span><span class="sig-name descname"><span class="pre">MODESDenseOutput</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_old</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sol_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="modespy.methods.html#modespy.methods.SolverType" title="modespy.methods.SolverType"><span class="pre">SolverType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeffs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODESDenseOutput" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">DenseOutput</span></code></p>
 <p>MODESDenseOutput provides interpolation for intermediate values
 between MODES timesteps.  This is done by storing the corrector
 polynomial of the main running solver / order After each successful
 step, along with the solver type and the last time step (<cite>t_old</cite> → <cite>t</cite>).</p>
-<dl class="method">
-<dt id="modespy.modes.MODESDenseOutput.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">t_old: float</em>, <em class="sig-param">t: float</em>, <em class="sig-param">sol_type: modespy.methods.SolverType</em>, <em class="sig-param">coeffs: numpy.ndarray</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODESDenseOutput.__init__" title="Permalink to this definition">¶</a></dt>
-<dd><p>Initialize self.  See help(type(self)) for accurate signature.</p>
-</dd></dl>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODESDenseOutput.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t_old</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sol_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="modespy.methods.html#modespy.methods.SolverType" title="modespy.methods.SolverType"><span class="pre">SolverType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">coeffs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODESDenseOutput.__init__" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.MODESDenseOutput._call_impl">
-<code class="sig-name descname">_call_impl</code><span class="sig-paren">(</span><em class="sig-param">t: float</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODESDenseOutput._call_impl" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.MODESDenseOutput._call_impl">
+<span class="sig-name descname"><span class="pre">_call_impl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.MODESDenseOutput._call_impl" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="modespy.modes.SolverInstance">
-<em class="property">class </em><code class="sig-prename descclassname">modespy.modes.</code><code class="sig-name descname">SolverInstance</code><span class="sig-paren">(</span><em class="sig-param">p: int, method: modespy.methods.Multistep, filter: numpy.ndarray, q_len: int, h: collections.deque, r_ctrl: collections.deque, poly_pred: Optional[numpy.ndarray], poly_corr: Optional[numpy.ndarray], running: bool</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.SolverInstance" title="Permalink to this definition">¶</a></dt>
+<dl class="py class">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modespy.modes.</span></span><span class="sig-name descname"><span class="pre">SolverInstance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="modespy.methods.html#modespy.methods.Multistep" title="modespy.methods.Multistep"><span class="pre">Multistep</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">deque</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">deque</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_pred</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_corr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">running</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.modes.SolverInstance" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Container class used to hold all runtime data for a single instance
 of a specific ODE solver type operating on a single order.</p>
-<dl class="method">
-<dt id="modespy.modes.SolverInstance.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">p: int, method: modespy.methods.Multistep, filter: numpy.ndarray, q_len: int, h: collections.deque, r_ctrl: collections.deque, poly_pred: Optional[numpy.ndarray], poly_corr: Optional[numpy.ndarray], running: bool</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#modespy.modes.SolverInstance.__init__" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="modespy.methods.html#modespy.methods.Multistep" title="modespy.methods.Multistep"><span class="pre">Multistep</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">q_len</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">h</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">deque</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">r_ctrl</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">deque</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_pred</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">poly_corr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">running</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#modespy.modes.SolverInstance.__init__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="modespy.modes.SolverInstance.theta">
-<em class="property">property </em><code class="sig-name descname">theta</code><a class="headerlink" href="#modespy.modes.SolverInstance.theta" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span></em><a class="headerlink" href="#modespy.modes.SolverInstance.filter" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance.h">
+<span class="sig-name descname"><span class="pre">h</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">deque</span></em><a class="headerlink" href="#modespy.modes.SolverInstance.h" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance.method">
+<span class="sig-name descname"><span class="pre">method</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="modespy.methods.html#modespy.methods.Multistep" title="modespy.methods.Multistep"><span class="pre">Multistep</span></a></em><a class="headerlink" href="#modespy.modes.SolverInstance.method" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance.p">
+<span class="sig-name descname"><span class="pre">p</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#modespy.modes.SolverInstance.p" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance.poly_corr">
+<span class="sig-name descname"><span class="pre">poly_corr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#modespy.modes.SolverInstance.poly_corr" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance.poly_pred">
+<span class="sig-name descname"><span class="pre">poly_pred</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">ndarray</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#modespy.modes.SolverInstance.poly_pred" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance.q_len">
+<span class="sig-name descname"><span class="pre">q_len</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">int</span></em><a class="headerlink" href="#modespy.modes.SolverInstance.q_len" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance.r_ctrl">
+<span class="sig-name descname"><span class="pre">r_ctrl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">deque</span></em><a class="headerlink" href="#modespy.modes.SolverInstance.r_ctrl" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance.running">
+<span class="sig-name descname"><span class="pre">running</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">bool</span></em><a class="headerlink" href="#modespy.modes.SolverInstance.running" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="modespy.modes.SolverInstance.theta">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">theta</span></span><a class="headerlink" href="#modespy.modes.SolverInstance.theta" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">MODES Module</a><ul>
 <li><a class="reference internal" href="#contents">Contents</a></li>
 <li><a class="reference internal" href="#module-modespy.modes">Members</a><ul>
 <li><a class="reference internal" href="#future">Future</a></li>
+<li><a class="reference internal" href="#modespy.modes.AnalyticDenseOutput"><code class="docutils literal notranslate"><span class="pre">AnalyticDenseOutput</span></code></a><ul>
+<li><a class="reference internal" href="#modespy.modes.AnalyticDenseOutput.__init__"><code class="docutils literal notranslate"><span class="pre">AnalyticDenseOutput.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.AnalyticDenseOutput._call_impl"><code class="docutils literal notranslate"><span class="pre">AnalyticDenseOutput._call_impl()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modespy.modes.MODES"><code class="docutils literal notranslate"><span class="pre">MODES</span></code></a><ul>
+<li><a class="reference internal" href="#modespy.modes.MODES.__init__"><code class="docutils literal notranslate"><span class="pre">MODES.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES._coeffs_explicit"><code class="docutils literal notranslate"><span class="pre">MODES._coeffs_explicit()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES._coeffs_implicit"><code class="docutils literal notranslate"><span class="pre">MODES._coeffs_implicit()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES._coeffs_implicit_plus"><code class="docutils literal notranslate"><span class="pre">MODES._coeffs_implicit_plus()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES._dense_output_impl"><code class="docutils literal notranslate"><span class="pre">MODES._dense_output_impl()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES._record_stats"><code class="docutils literal notranslate"><span class="pre">MODES._record_stats()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES._solve_implicit_system"><code class="docutils literal notranslate"><span class="pre">MODES._solve_implicit_system()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES._step_impl"><code class="docutils literal notranslate"><span class="pre">MODES._step_impl()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES.auto_stepsize"><code class="docutils literal notranslate"><span class="pre">MODES.auto_stepsize()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES.correct"><code class="docutils literal notranslate"><span class="pre">MODES.correct()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES.h"><code class="docutils literal notranslate"><span class="pre">MODES.h</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES.nsols"><code class="docutils literal notranslate"><span class="pre">MODES.nsols</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES.p"><code class="docutils literal notranslate"><span class="pre">MODES.p</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES.predict"><code class="docutils literal notranslate"><span class="pre">MODES.predict()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES.set_running_solvers"><code class="docutils literal notranslate"><span class="pre">MODES.set_running_solvers()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES.startup"><code class="docutils literal notranslate"><span class="pre">MODES.startup()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES.t"><code class="docutils literal notranslate"><span class="pre">MODES.t</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES.vprint"><code class="docutils literal notranslate"><span class="pre">MODES.vprint()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODES.y"><code class="docutils literal notranslate"><span class="pre">MODES.y</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modespy.modes.MODESDenseOutput"><code class="docutils literal notranslate"><span class="pre">MODESDenseOutput</span></code></a><ul>
+<li><a class="reference internal" href="#modespy.modes.MODESDenseOutput.__init__"><code class="docutils literal notranslate"><span class="pre">MODESDenseOutput.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.MODESDenseOutput._call_impl"><code class="docutils literal notranslate"><span class="pre">MODESDenseOutput._call_impl()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance"><code class="docutils literal notranslate"><span class="pre">SolverInstance</span></code></a><ul>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance.__init__"><code class="docutils literal notranslate"><span class="pre">SolverInstance.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance.filter"><code class="docutils literal notranslate"><span class="pre">SolverInstance.filter</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance.h"><code class="docutils literal notranslate"><span class="pre">SolverInstance.h</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance.method"><code class="docutils literal notranslate"><span class="pre">SolverInstance.method</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance.p"><code class="docutils literal notranslate"><span class="pre">SolverInstance.p</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance.poly_corr"><code class="docutils literal notranslate"><span class="pre">SolverInstance.poly_corr</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance.poly_pred"><code class="docutils literal notranslate"><span class="pre">SolverInstance.poly_pred</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance.q_len"><code class="docutils literal notranslate"><span class="pre">SolverInstance.q_len</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance.r_ctrl"><code class="docutils literal notranslate"><span class="pre">SolverInstance.r_ctrl</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance.running"><code class="docutils literal notranslate"><span class="pre">SolverInstance.running</span></code></a></li>
+<li><a class="reference internal" href="#modespy.modes.SolverInstance.theta"><code class="docutils literal notranslate"><span class="pre">SolverInstance.theta</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Welcome to MODESpy</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="modespy.filters.html"
-                        title="next chapter">Filters Module</a></p>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="index.html"
+                          title="previous chapter">Welcome to MODESpy</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="modespy.filters.html"
+                          title="next chapter">Filters Module</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -826,12 +918,12 @@ of a specific ODE solver type operating on a single order.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -851,12 +943,13 @@ of a specific ODE solver type operating on a single order.</p>
         <li class="right" >
           <a href="index.html" title="Welcome to MODESpy"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">MODES Module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Eric J. Whitney.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    &#169; Copyright 2020, Eric J. Whitney.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

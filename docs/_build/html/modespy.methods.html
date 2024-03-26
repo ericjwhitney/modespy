@@ -1,19 +1,18 @@
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Methods Module &#8212; modespy 0.9.0 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=514cf933" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -35,7 +34,8 @@
         <li class="right" >
           <a href="modespy.filters.html" title="Filters Module"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Methods Module</a></li> 
       </ul>
     </div>  
 
@@ -44,15 +44,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="methods-module">
-<span id="modespy-methods"></span><h1>Methods Module<a class="headerlink" href="#methods-module" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+  <section id="methods-module">
+<span id="modespy-methods"></span><h1>Methods Module<a class="headerlink" href="#methods-module" title="Link to this heading">¶</a></h1>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#modespy.methods.Multistep" title="modespy.methods.Multistep"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modespy.methods.Multistep</span></code></a></p></td>
 <td><p>This is the abstract base class for all multi-step ODE methods.</p></td>
@@ -62,9 +58,9 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="module-modespy.methods">
-<span id="members"></span><h2>Members<a class="headerlink" href="#module-modespy.methods" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-modespy.methods">
+<span id="members"></span><h2>Members<a class="headerlink" href="#module-modespy.methods" title="Link to this heading">¶</a></h2>
 <p>This module provides functions that define <span class="math notranslate nohighlight">\(\theta\)</span> coefficients,
 corresponding values of <em>p</em>-order / <em>k</em>-step, and other parameters associated
 with different <em>Explicit</em>, <em>Implicit</em> and <em>Implicit + 1</em> methods.</p>
@@ -173,10 +169,10 @@ appear to be stable or work with the current algorithm.</p>
 </div></blockquote>
 </li>
 </ul>
-<dl class="class">
-<dt id="modespy.methods.Multistep">
-<em class="property">class </em><code class="sig-prename descclassname">modespy.methods.</code><code class="sig-name descname">Multistep</code><span class="sig-paren">(</span><em class="sig-param">solver_type: modespy.methods.SolverType</em>, <em class="sig-param">p_theta: Dict[int</em>, <em class="sig-param">Sequence[float]] = None</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.methods.Multistep" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">abc.ABC</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="modespy.methods.Multistep">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modespy.methods.</span></span><span class="sig-name descname"><span class="pre">Multistep</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">solver_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modespy.methods.SolverType" title="modespy.methods.SolverType"><span class="pre">SolverType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.methods.Multistep" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">ABC</span></code></p>
 <p>This is the abstract base class for all multi-step ODE methods.</p>
 <blockquote>
 <div><dl class="simple">
@@ -192,84 +188,106 @@ there  is noupper limit.</p>
 <p><cite>p_default</cite> and <cite>p_limit</cite> values must separately provided for each
 instance if <cite>p_theta</cite> is not supplied during creation.</p>
 </div>
-<dl class="method">
-<dt id="modespy.methods.Multistep.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">solver_type: modespy.methods.SolverType</em>, <em class="sig-param">p_theta: Dict[int</em>, <em class="sig-param">Sequence[float]] = None</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.methods.Multistep.__init__" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.methods.Multistep.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">solver_type</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#modespy.methods.SolverType" title="modespy.methods.SolverType"><span class="pre">SolverType</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">p_theta</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Dict</span><span class="p"><span class="pre">[</span></span><span class="pre">int</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.methods.Multistep.__init__" title="Link to this definition">¶</a></dt>
 <dd><dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>p_theta</strong> (<em>Dict</em><em>[</em><em>int</em><em>, </em><em>array-like</em><em>]</em><em>, </em><em>optional</em>) – Dict containing each order <em>p</em> as a key and a corresponding
 sequence of theta values that define the method.</p>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="attribute">
-<dt id="modespy.methods.Multistep._abc_impl">
-<code class="sig-name descname">_abc_impl</code><em class="property"> = &lt;_abc_data object&gt;</em><a class="headerlink" href="#modespy.methods.Multistep._abc_impl" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.methods.Multistep._abc_impl">
+<span class="sig-name descname"><span class="pre">_abc_impl</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;_abc._abc_data</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#modespy.methods.Multistep._abc_impl" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="modespy.methods.Multistep.k">
-<code class="sig-name descname">k</code><span class="sig-paren">(</span><em class="sig-param">p: int</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#modespy.methods.Multistep.k" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.methods.Multistep.k">
+<span class="sig-name descname"><span class="pre">k</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#modespy.methods.Multistep.k" title="Link to this definition">¶</a></dt>
 <dd><p>Returns the number of steps <cite>k</cite> used by this method to generate a
 new point based the given order <cite>p</cite>.</p>
 </dd></dl>
 
-<dl class="method">
-<dt id="modespy.methods.Multistep.theta">
-<code class="sig-name descname">theta</code><span class="sig-paren">(</span><em class="sig-param">p: int</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray<a class="headerlink" href="#modespy.methods.Multistep.theta" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.methods.Multistep.theta">
+<span class="sig-name descname"><span class="pre">theta</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">ndarray</span></span></span><a class="headerlink" href="#modespy.methods.Multistep.theta" title="Link to this definition">¶</a></dt>
 <dd><p>Returns an array of <span class="math notranslate nohighlight">\(\theta\)</span> values corresponding to the
 given order <cite>p</cite>.</p>
 </dd></dl>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="modespy.methods.SolverType">
-<em class="property">class </em><code class="sig-prename descclassname">modespy.methods.</code><code class="sig-name descname">SolverType</code><a class="headerlink" href="#modespy.methods.SolverType" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">enum.Enum</span></code></p>
+<dl class="py class">
+<dt class="sig sig-object py" id="modespy.methods.SolverType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modespy.methods.</span></span><span class="sig-name descname"><span class="pre">SolverType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">values</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.methods.SolverType" title="Link to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Enum</span></code></p>
 <p>Sets uniform constant labels for different solution methods.</p>
-<dl class="attribute">
-<dt id="modespy.methods.SolverType.EXPLICIT">
-<code class="sig-name descname">EXPLICIT</code><em class="property"> = 1</em><a class="headerlink" href="#modespy.methods.SolverType.EXPLICIT" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.methods.SolverType.EXPLICIT">
+<span class="sig-name descname"><span class="pre">EXPLICIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#modespy.methods.SolverType.EXPLICIT" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="modespy.methods.SolverType.IMPLICIT">
-<code class="sig-name descname">IMPLICIT</code><em class="property"> = 2</em><a class="headerlink" href="#modespy.methods.SolverType.IMPLICIT" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.methods.SolverType.IMPLICIT">
+<span class="sig-name descname"><span class="pre">IMPLICIT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#modespy.methods.SolverType.IMPLICIT" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="modespy.methods.SolverType.IMPLICIT_PLUS">
-<code class="sig-name descname">IMPLICIT_PLUS</code><em class="property"> = 3</em><a class="headerlink" href="#modespy.methods.SolverType.IMPLICIT_PLUS" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.methods.SolverType.IMPLICIT_PLUS">
+<span class="sig-name descname"><span class="pre">IMPLICIT_PLUS</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#modespy.methods.SolverType.IMPLICIT_PLUS" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Methods Module</a><ul>
 <li><a class="reference internal" href="#contents">Contents</a></li>
-<li><a class="reference internal" href="#module-modespy.methods">Members</a></li>
+<li><a class="reference internal" href="#module-modespy.methods">Members</a><ul>
+<li><a class="reference internal" href="#modespy.methods.Multistep"><code class="docutils literal notranslate"><span class="pre">Multistep</span></code></a><ul>
+<li><a class="reference internal" href="#modespy.methods.Multistep.__init__"><code class="docutils literal notranslate"><span class="pre">Multistep.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.methods.Multistep._abc_impl"><code class="docutils literal notranslate"><span class="pre">Multistep._abc_impl</span></code></a></li>
+<li><a class="reference internal" href="#modespy.methods.Multistep.k"><code class="docutils literal notranslate"><span class="pre">Multistep.k()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.methods.Multistep.theta"><code class="docutils literal notranslate"><span class="pre">Multistep.theta()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modespy.methods.SolverType"><code class="docutils literal notranslate"><span class="pre">SolverType</span></code></a><ul>
+<li><a class="reference internal" href="#modespy.methods.SolverType.EXPLICIT"><code class="docutils literal notranslate"><span class="pre">SolverType.EXPLICIT</span></code></a></li>
+<li><a class="reference internal" href="#modespy.methods.SolverType.IMPLICIT"><code class="docutils literal notranslate"><span class="pre">SolverType.IMPLICIT</span></code></a></li>
+<li><a class="reference internal" href="#modespy.methods.SolverType.IMPLICIT_PLUS"><code class="docutils literal notranslate"><span class="pre">SolverType.IMPLICIT_PLUS</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="modespy.filters.html"
-                        title="previous chapter">Filters Module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="modespy.util.html"
-                        title="next chapter">Utilities Module</a></p>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="modespy.filters.html"
+                          title="previous chapter">Filters Module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="modespy.util.html"
+                          title="next chapter">Utilities Module</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -281,12 +299,12 @@ given order <cite>p</cite>.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -306,12 +324,13 @@ given order <cite>p</cite>.</p>
         <li class="right" >
           <a href="modespy.filters.html" title="Filters Module"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Methods Module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Eric J. Whitney.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    &#169; Copyright 2020, Eric J. Whitney.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Standard Problems Module &#8212; modespy 0.9.0 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=514cf933" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -31,7 +29,8 @@
         <li class="right" >
           <a href="modespy.tk_examples.html" title="Tkinter Examples Module"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Standard Problems Module</a></li> 
       </ul>
     </div>  
 
@@ -40,24 +39,20 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="standard-problems-module">
-<span id="modespy-std-problems"></span><h1>Standard Problems Module<a class="headerlink" href="#standard-problems-module" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+  <section id="standard-problems-module">
+<span id="modespy-std-problems"></span><h1>Standard Problems Module<a class="headerlink" href="#standard-problems-module" title="Link to this heading">¶</a></h1>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#modespy.std_problems.Problem" title="modespy.std_problems.Problem"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modespy.std_problems.Problem</span></code></a></p></td>
 <td><p></p></td>
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="module-modespy.std_problems">
-<span id="members"></span><h2>Members<a class="headerlink" href="#module-modespy.std_problems" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-modespy.std_problems">
+<span id="members"></span><h2>Members<a class="headerlink" href="#module-modespy.std_problems" title="Link to this heading">¶</a></h2>
 <p>This module defines various standard problems from the literature,
 commonly used as benchmarks for different ODE methods.</p>
 <p>Equations, descriptions, limits, etc for each problem are stored together in a
@@ -89,122 +84,152 @@ commonly used as benchmarks for different ODE methods.</p>
 </div></blockquote>
 </li>
 </ul>
-<div class="section" id="future">
-<h3>Future<a class="headerlink" href="#future" title="Permalink to this headline">¶</a></h3>
+<section id="future">
+<h3>Future<a class="headerlink" href="#future" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>More standard problems can be included.</p></li>
 </ul>
-<dl class="class">
-<dt id="modespy.std_problems.Problem">
-<em class="property">class </em><code class="sig-prename descclassname">modespy.std_problems.</code><code class="sig-name descname">Problem</code><span class="sig-paren">(</span><em class="sig-param">equation: Callable[[float, Sequence[float]], Sequence[float]], jacobian: Union[Callable[[float, Sequence[float]], Sequence[float]], NoneType] = None, analytic: Union[Callable[[float, Sequence[float]], Sequence[float]], NoneType] = None, default_t: Union[Tuple[float, float], NoneType] = None, default_y0: Union[Sequence[float], NoneType] = None, description: Union[str, NoneType] = None</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.Problem" title="Permalink to this definition">¶</a></dt>
+</section>
+<dl class="py class">
+<dt class="sig sig-object py" id="modespy.std_problems.Problem">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">modespy.std_problems.</span></span><span class="sig-name descname"><span class="pre">Problem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">analytic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_y0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.Problem" title="Link to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<dl class="method">
-<dt id="modespy.std_problems.Problem.__init__">
-<code class="sig-name descname">__init__</code><span class="sig-paren">(</span><em class="sig-param">equation: Callable[[float, Sequence[float]], Sequence[float]], jacobian: Optional[Callable[[float, Sequence[float]], Sequence[float]]] = None, analytic: Optional[Callable[[float, Sequence[float]], Sequence[float]]] = None, default_t: Optional[Tuple[float, float]] = None, default_y0: Optional[Sequence[float]] = None, description: Optional[str] = None</em><span class="sig-paren">)</span> &#x2192; None<a class="headerlink" href="#modespy.std_problems.Problem.__init__" title="Permalink to this definition">¶</a></dt>
+<dl class="py method">
+<dt class="sig sig-object py" id="modespy.std_problems.Problem.__init__">
+<span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">equation</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></span></em>, <em class="sig-param"><span class="n"><span class="pre">jacobian</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">analytic</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default_y0</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="headerlink" href="#modespy.std_problems.Problem.__init__" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="modespy.std_problems.Problem.analytic">
-<code class="sig-name descname">analytic</code><em class="property"> = None</em><a class="headerlink" href="#modespy.std_problems.Problem.analytic" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.std_problems.Problem.analytic">
+<span class="sig-name descname"><span class="pre">analytic</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#modespy.std_problems.Problem.analytic" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="modespy.std_problems.Problem.default_t">
-<code class="sig-name descname">default_t</code><em class="property"> = None</em><a class="headerlink" href="#modespy.std_problems.Problem.default_t" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.std_problems.Problem.default_t">
+<span class="sig-name descname"><span class="pre">default_t</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#modespy.std_problems.Problem.default_t" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="modespy.std_problems.Problem.default_y0">
-<code class="sig-name descname">default_y0</code><em class="property"> = None</em><a class="headerlink" href="#modespy.std_problems.Problem.default_y0" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.std_problems.Problem.default_y0">
+<span class="sig-name descname"><span class="pre">default_y0</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#modespy.std_problems.Problem.default_y0" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="modespy.std_problems.Problem.description">
-<code class="sig-name descname">description</code><em class="property"> = None</em><a class="headerlink" href="#modespy.std_problems.Problem.description" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.std_problems.Problem.description">
+<span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#modespy.std_problems.Problem.description" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="attribute">
-<dt id="modespy.std_problems.Problem.jacobian">
-<code class="sig-name descname">jacobian</code><em class="property"> = None</em><a class="headerlink" href="#modespy.std_problems.Problem.jacobian" title="Permalink to this definition">¶</a></dt>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.std_problems.Problem.equation">
+<span class="sig-name descname"><span class="pre">equation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#modespy.std_problems.Problem.equation" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="modespy.std_problems.Problem.jacobian">
+<span class="sig-name descname"><span class="pre">jacobian</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Callable</span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></em><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">None</span></em><a class="headerlink" href="#modespy.std_problems.Problem.jacobian" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
 
-<dl class="function">
-<dt id="modespy.std_problems.butterfly_jac">
-<code class="sig-prename descclassname">modespy.std_problems.</code><code class="sig-name descname">butterfly_jac</code><span class="sig-paren">(</span><em class="sig-param">t: float, y: Sequence[float]</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.butterfly_jac" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.std_problems.butterfly_jac">
+<span class="sig-prename descclassname"><span class="pre">modespy.std_problems.</span></span><span class="sig-name descname"><span class="pre">butterfly_jac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.butterfly_jac" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="modespy.std_problems.butterfly_rhs">
-<code class="sig-prename descclassname">modespy.std_problems.</code><code class="sig-name descname">butterfly_rhs</code><span class="sig-paren">(</span><em class="sig-param">t: float, y: Sequence[float]</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.butterfly_rhs" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.std_problems.butterfly_rhs">
+<span class="sig-prename descclassname"><span class="pre">modespy.std_problems.</span></span><span class="sig-name descname"><span class="pre">butterfly_rhs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Sequence</span><span class="p"><span class="pre">[</span></span><span class="pre">float</span><span class="p"><span class="pre">]</span></span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.butterfly_rhs" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="modespy.std_problems.butterfly_sol">
-<code class="sig-prename descclassname">modespy.std_problems.</code><code class="sig-name descname">butterfly_sol</code><span class="sig-paren">(</span><em class="sig-param">t</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.butterfly_sol" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.std_problems.butterfly_sol">
+<span class="sig-prename descclassname"><span class="pre">modespy.std_problems.</span></span><span class="sig-name descname"><span class="pre">butterfly_sol</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.butterfly_sol" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="modespy.std_problems.hires_jac">
-<code class="sig-prename descclassname">modespy.std_problems.</code><code class="sig-name descname">hires_jac</code><span class="sig-paren">(</span><em class="sig-param">t</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.hires_jac" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.std_problems.hires_jac">
+<span class="sig-prename descclassname"><span class="pre">modespy.std_problems.</span></span><span class="sig-name descname"><span class="pre">hires_jac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.hires_jac" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="modespy.std_problems.hires_rhs">
-<code class="sig-prename descclassname">modespy.std_problems.</code><code class="sig-name descname">hires_rhs</code><span class="sig-paren">(</span><em class="sig-param">t</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.hires_rhs" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.std_problems.hires_rhs">
+<span class="sig-prename descclassname"><span class="pre">modespy.std_problems.</span></span><span class="sig-name descname"><span class="pre">hires_rhs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.hires_rhs" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="modespy.std_problems.lotka_jac">
-<code class="sig-prename descclassname">modespy.std_problems.</code><code class="sig-name descname">lotka_jac</code><span class="sig-paren">(</span><em class="sig-param">t</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.lotka_jac" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.std_problems.lotka_jac">
+<span class="sig-prename descclassname"><span class="pre">modespy.std_problems.</span></span><span class="sig-name descname"><span class="pre">lotka_jac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.lotka_jac" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="modespy.std_problems.lotka_rhs">
-<code class="sig-prename descclassname">modespy.std_problems.</code><code class="sig-name descname">lotka_rhs</code><span class="sig-paren">(</span><em class="sig-param">t</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.lotka_rhs" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.std_problems.lotka_rhs">
+<span class="sig-prename descclassname"><span class="pre">modespy.std_problems.</span></span><span class="sig-name descname"><span class="pre">lotka_rhs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.lotka_rhs" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="modespy.std_problems.pleiades_rhs">
-<code class="sig-prename descclassname">modespy.std_problems.</code><code class="sig-name descname">pleiades_rhs</code><span class="sig-paren">(</span><em class="sig-param">t</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.pleiades_rhs" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.std_problems.pleiades_rhs">
+<span class="sig-prename descclassname"><span class="pre">modespy.std_problems.</span></span><span class="sig-name descname"><span class="pre">pleiades_rhs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.pleiades_rhs" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="modespy.std_problems.pollution_jac">
-<code class="sig-prename descclassname">modespy.std_problems.</code><code class="sig-name descname">pollution_jac</code><span class="sig-paren">(</span><em class="sig-param">t</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.pollution_jac" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.std_problems.pollution_jac">
+<span class="sig-prename descclassname"><span class="pre">modespy.std_problems.</span></span><span class="sig-name descname"><span class="pre">pollution_jac</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.pollution_jac" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="function">
-<dt id="modespy.std_problems.pollution_rhs">
-<code class="sig-prename descclassname">modespy.std_problems.</code><code class="sig-name descname">pollution_rhs</code><span class="sig-paren">(</span><em class="sig-param">t</em>, <em class="sig-param">y</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.pollution_rhs" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.std_problems.pollution_rhs">
+<span class="sig-prename descclassname"><span class="pre">modespy.std_problems.</span></span><span class="sig-name descname"><span class="pre">pollution_rhs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.std_problems.pollution_rhs" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Standard Problems Module</a><ul>
 <li><a class="reference internal" href="#contents">Contents</a></li>
 <li><a class="reference internal" href="#module-modespy.std_problems">Members</a><ul>
 <li><a class="reference internal" href="#future">Future</a></li>
+<li><a class="reference internal" href="#modespy.std_problems.Problem"><code class="docutils literal notranslate"><span class="pre">Problem</span></code></a><ul>
+<li><a class="reference internal" href="#modespy.std_problems.Problem.__init__"><code class="docutils literal notranslate"><span class="pre">Problem.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.Problem.analytic"><code class="docutils literal notranslate"><span class="pre">Problem.analytic</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.Problem.default_t"><code class="docutils literal notranslate"><span class="pre">Problem.default_t</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.Problem.default_y0"><code class="docutils literal notranslate"><span class="pre">Problem.default_y0</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.Problem.description"><code class="docutils literal notranslate"><span class="pre">Problem.description</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.Problem.equation"><code class="docutils literal notranslate"><span class="pre">Problem.equation</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.Problem.jacobian"><code class="docutils literal notranslate"><span class="pre">Problem.jacobian</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#modespy.std_problems.butterfly_jac"><code class="docutils literal notranslate"><span class="pre">butterfly_jac()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.butterfly_rhs"><code class="docutils literal notranslate"><span class="pre">butterfly_rhs()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.butterfly_sol"><code class="docutils literal notranslate"><span class="pre">butterfly_sol()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.hires_jac"><code class="docutils literal notranslate"><span class="pre">hires_jac()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.hires_rhs"><code class="docutils literal notranslate"><span class="pre">hires_rhs()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.lotka_jac"><code class="docutils literal notranslate"><span class="pre">lotka_jac()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.lotka_rhs"><code class="docutils literal notranslate"><span class="pre">lotka_rhs()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.pleiades_rhs"><code class="docutils literal notranslate"><span class="pre">pleiades_rhs()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.pollution_jac"><code class="docutils literal notranslate"><span class="pre">pollution_jac()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.std_problems.pollution_rhs"><code class="docutils literal notranslate"><span class="pre">pollution_rhs()</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="modespy.tk_examples.html"
-                        title="previous chapter">Tkinter Examples Module</a></p>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="modespy.tk_examples.html"
+                          title="previous chapter">Tkinter Examples Module</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -216,12 +241,12 @@ commonly used as benchmarks for different ODE methods.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -238,12 +263,13 @@ commonly used as benchmarks for different ODE methods.</p>
         <li class="right" >
           <a href="modespy.tk_examples.html" title="Tkinter Examples Module"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Standard Problems Module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Eric J. Whitney.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    &#169; Copyright 2020, Eric J. Whitney.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>

@@ -1,19 +1,17 @@
-
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" data-content_root="./">
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
     <title>Filters Module &#8212; modespy 0.9.0 documentation</title>
-    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/classic.css?v=514cf933" />
     
-    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-    <script type="text/javascript" src="_static/jquery.js"></script>
-    <script type="text/javascript" src="_static/underscore.js"></script>
-    <script type="text/javascript" src="_static/doctools.js"></script>
-    <script type="text/javascript" src="_static/language_data.js"></script>
-    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="_static/documentation_options.js?v=39bb1c6d"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -35,7 +33,8 @@
         <li class="right" >
           <a href="modespy.modes.html" title="MODES Module"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Filters Module</a></li> 
       </ul>
     </div>  
 
@@ -44,15 +43,11 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="filters-module">
-<span id="modespy-filters"></span><h1>Filters Module<a class="headerlink" href="#filters-module" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="contents">
-<h2>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h2>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
+  <section id="filters-module">
+<span id="modespy-filters"></span><h1>Filters Module<a class="headerlink" href="#filters-module" title="Link to this heading">¶</a></h1>
+<section id="contents">
+<h2>Contents<a class="headerlink" href="#contents" title="Link to this heading">¶</a></h2>
+<table class="autosummary longtable docutils align-default">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="#modespy.filters._parse_filter_arg" title="modespy.filters._parse_filter_arg"><code class="xref py py-obj docutils literal notranslate"><span class="pre">modespy.filters._parse_filter_arg</span></code></a></p></td>
 <td><p>Helper function for resolving different filter arguments passed to <code class="docutils literal notranslate"><span class="pre">MODES</span></code>.</p></td>
@@ -65,9 +60,9 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="module-modespy.filters">
-<span id="members"></span><h2>Members<a class="headerlink" href="#module-modespy.filters" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="module-modespy.filters">
+<span id="members"></span><h2>Members<a class="headerlink" href="#module-modespy.filters" title="Link to this heading">¶</a></h2>
 <p>This module establishes standard filter vectors and functions to
 implement discrete PID-style stepsize controllers.  The following filters
 are provided:</p>
@@ -112,26 +107,26 @@ exists)</p></li>
 for a non-default value of the <cite>b</cite> parameter in these cases.</p>
 </div>
 </div></blockquote>
-<dl class="function">
-<dt id="modespy.filters._parse_filter_arg">
-<code class="sig-prename descclassname">modespy.filters.</code><code class="sig-name descname">_parse_filter_arg</code><span class="sig-paren">(</span><em class="sig-param">filt_arg</em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.filters._parse_filter_arg" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.filters._parse_filter_arg">
+<span class="sig-prename descclassname"><span class="pre">modespy.filters.</span></span><span class="sig-name descname"><span class="pre">_parse_filter_arg</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filt_arg</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#modespy.filters._parse_filter_arg" title="Link to this definition">¶</a></dt>
 <dd><p>Helper function for resolving different filter arguments passed to
 <code class="docutils literal notranslate"><span class="pre">MODES</span></code>.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="modespy.filters.filter_order">
-<code class="sig-prename descclassname">modespy.filters.</code><code class="sig-name descname">filter_order</code><span class="sig-paren">(</span><em class="sig-param">vec: numpy.ndarray</em><span class="sig-paren">)</span> &#x2192; int<a class="headerlink" href="#modespy.filters.filter_order" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.filters.filter_order">
+<span class="sig-prename descclassname"><span class="pre">modespy.filters.</span></span><span class="sig-name descname"><span class="pre">filter_order</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">int</span></span></span><a class="headerlink" href="#modespy.filters.filter_order" title="Link to this definition">¶</a></dt>
 <dd><p>Function returning the order of the given filter vector <cite>vec</cite>.</p>
 </dd></dl>
 
-<dl class="function">
-<dt id="modespy.filters.filter_r">
-<code class="sig-prename descclassname">modespy.filters.</code><code class="sig-name descname">filter_r</code><span class="sig-paren">(</span><em class="sig-param">vec: numpy.ndarray</em>, <em class="sig-param">p: int</em>, <em class="sig-param">hs: numpy.array</em>, <em class="sig-param">errs: numpy.array</em>, <em class="sig-param">unit_errors: bool</em><span class="sig-paren">)</span> &#x2192; float<a class="headerlink" href="#modespy.filters.filter_r" title="Permalink to this definition">¶</a></dt>
+<dl class="py function">
+<dt class="sig sig-object py" id="modespy.filters.filter_r">
+<span class="sig-prename descclassname"><span class="pre">modespy.filters.</span></span><span class="sig-name descname"><span class="pre">filter_r</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ndarray</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">p</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">hs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">errs</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">array</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unit_errors</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">float</span></span></span><a class="headerlink" href="#modespy.filters.filter_r" title="Link to this definition">¶</a></dt>
 <dd><p>Compute the step size ratio based on filtered interpretation of previous
 step sizes and associated controller errors.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>vec</strong> (<em>array_like</em>) – Filter vector.</p></li>
 <li><p><strong>p</strong> (<em>int</em>) – Order of method being filtered, used when scaling errors.</p></li>
@@ -140,39 +135,51 @@ step sizes and associated controller errors.</p>
 <li><p><strong>unit_errors</strong> (<em>bool</em>) – True if scaling errors to unit step sizes is required.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p><strong>r</strong> – Step size ratio obtained via filtering.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
 </dd>
 </dl>
 </dd></dl>
 
-</div>
-</div>
+</section>
+</section>
 
 
+            <div class="clearer"></div>
           </div>
         </div>
       </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="index.html">Table of Contents</a></h3>
-  <ul>
+  <div>
+    <h3><a href="index.html">Table of Contents</a></h3>
+    <ul>
 <li><a class="reference internal" href="#">Filters Module</a><ul>
 <li><a class="reference internal" href="#contents">Contents</a></li>
-<li><a class="reference internal" href="#module-modespy.filters">Members</a></li>
+<li><a class="reference internal" href="#module-modespy.filters">Members</a><ul>
+<li><a class="reference internal" href="#modespy.filters._parse_filter_arg"><code class="docutils literal notranslate"><span class="pre">_parse_filter_arg()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.filters.filter_order"><code class="docutils literal notranslate"><span class="pre">filter_order()</span></code></a></li>
+<li><a class="reference internal" href="#modespy.filters.filter_r"><code class="docutils literal notranslate"><span class="pre">filter_r()</span></code></a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
 
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="modespy.modes.html"
-                        title="previous chapter">MODES Module</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="modespy.methods.html"
-                        title="next chapter">Methods Module</a></p>
+  </div>
+  <div>
+    <h4>Previous topic</h4>
+    <p class="topless"><a href="modespy.modes.html"
+                          title="previous chapter">MODES Module</a></p>
+  </div>
+  <div>
+    <h4>Next topic</h4>
+    <p class="topless"><a href="modespy.methods.html"
+                          title="next chapter">Methods Module</a></p>
+  </div>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -184,12 +191,12 @@ step sizes and associated controller errors.</p>
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
       <input type="submit" value="Go" />
     </form>
     </div>
 </div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
         </div>
       </div>
       <div class="clearer"></div>
@@ -209,12 +216,13 @@ step sizes and associated controller errors.</p>
         <li class="right" >
           <a href="modespy.modes.html" title="MODES Module"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">modespy 0.9.0 documentation</a> &#187;</li>
+        <li class="nav-item nav-item-this"><a href="">Filters Module</a></li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
-        &#169; Copyright 2020, Eric J. Whitney.
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.3.1.
+    &#169; Copyright 2020, Eric J. Whitney.
+      Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.2.6.
     </div>
   </body>
 </html>
